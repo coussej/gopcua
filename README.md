@@ -1,6 +1,8 @@
 # gopcua
 
-This package wants to provide a thin, high-level wrapper around [open62541](https://github.com/open62541/open62541), so that you can have access to some basic OPC UA client functionality from within Go.
+This package wants to provide a thin, high-level wrapper around [open62541](https://github.com/open62541/open62541), so that you can have access to some basic OPC UA client functionality from within Go. 
+
+> NOTE: still very experimental and not properly tested.
 
 ## Usage
 
