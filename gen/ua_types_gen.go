@@ -10,7 +10,6 @@ package gopcua
 #include "gopcua_client.h"
 */
 import "C"
-import "unsafe"
 
 /****************************/
 /* Builtin Type Definitions */
@@ -79,15 +78,15 @@ type UA_Int64 C.UA_Int64
 
 const (
 	UA_INT64_MAX = int64(9223372036854775807)
-	UA_INT64_MIN = int64(9223372036854775808)
+	UA_INT64_MIN = int64(-9223372036854775808)
 )
 
 /** UInt64: An integer value between 0 and 18 446 744 073 709 551 615 */
 type UA_UInt64 C.UA_UInt64
 
 const (
-	UA_UINT64_MAX = int64(18446744073709551615)
-	A_UINT64_MIN  = int64(0)
+	UA_UINT64_MAX = uint64(18446744073709551615)
+	A_UINT64_MIN  = uint64(0)
 )
 
 /** Float: An IEEE single precision (32 bit) floating point value */
@@ -102,13 +101,6 @@ type UA_Double C.UA_Double
 
 /** String: A sequence of Unicode characters **/
 type UA_String C.UA_String
-
-func UA_STRING(s string) (uas UA_String) {
-	n := C.CString(s)
-	defer C.free(unsafe.Pointer(n))
-	uas = UA_String(C.UA_STRING(n))
-	return
-}
 
 /*********************************/
 /* DateTime: An instance in time */
@@ -128,25 +120,7 @@ const (
 /* Datetime of 1 Jan 1970 00:00 UTC */
 const UA_DATETIME_UNIX_EPOCH = int64(11644473600) * UA_SEC_TO_DATETIME
 
-/* The current time */
-func UA_DateTime_now() UA_DateTime {
-	return UA_DateTime(C.UA_DateTime_now())
-}
-
-/* CPU clock invariant to system time changes. Use only for time diffs, not current time */
-func UA_DateTime_nowMonotonic(void) UA_DateTime {
-	return UA_DateTime(C.UA_DateTime_nowMonotonic())
-}
-
 type UA_DateTimeStruct C.UA_DateTimeStruct
-
-func UA_DateTime_toStruct(dt UA_DateTime) UA_DateTimeStruct {
-	return UA_DateTimeStruct(C.UA_DateTime_toStruct(dt))
-}
-
-func UA_DateTime_toString(dt UA_DateTime) UA_String {
-	return UA_DateTime_toString(C.UA_DateTime_toStruct(dt))
-}
 
 /**************************************************************************/
 /* Guid: A 16 byte value that can be used as a globally unique identifier */
@@ -163,3 +137,6 @@ type UA_ExtensionObject C.UA_ExtensionObject
 type UA_Variant C.UA_Variant
 type UA_DataValue C.UA_DataValue
 type UA_DiagnosticInfo C.UA_DiagnosticInfo
+
+type UA_DataTypeMember C.UA_DataTypeMember
+type UA_DataType C.UA_DataType
