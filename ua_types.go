@@ -1,265 +1,353 @@
+// Created by cgo -godefs - DO NOT EDIT
+// cgo -godefs generated/open62541_types_map.go
+
 package gopcua
 
-// This file was auto-generated from ../open62541.h. Do not change it manually!
+type UA_StatusCode uint32
 
-/*
-#cgo CFLAGS: -std=c99 -I .
-#include <stdlib.h>
-#include "gopcua_client.h"
-
-*/
-import "C"
-
-type UA_StatusCode C.UA_StatusCode // line: 413
 const (
 	UA_STATUSCODE_GOOD                                    = UA_StatusCode(0x00)
-	UA_STATUSCODE_BADUNEXPECTEDERROR                      = UA_StatusCode(0x80010000) // An unexpected error occurred.
-	UA_STATUSCODE_BADINTERNALERROR                        = UA_StatusCode(0x80020000) // An internal error occurred as a result of a programming or configuration error.
-	UA_STATUSCODE_BADOUTOFMEMORY                          = UA_StatusCode(0x80030000) // Not enough memory to complete the operation.
-	UA_STATUSCODE_BADRESOURCEUNAVAILABLE                  = UA_StatusCode(0x80040000) // An operating system resource is not available.
-	UA_STATUSCODE_BADCOMMUNICATIONERROR                   = UA_StatusCode(0x80050000) // A low level communication error occurred.
-	UA_STATUSCODE_BADENCODINGERROR                        = UA_StatusCode(0x80060000) // Encoding halted because of invalid data in the objects being serialized.
-	UA_STATUSCODE_BADDECODINGERROR                        = UA_StatusCode(0x80070000) // Decoding halted because of invalid data in the stream.
-	UA_STATUSCODE_BADENCODINGLIMITSEXCEEDED               = UA_StatusCode(0x80080000) // The message encoding/decoding limits imposed by the stack have been exceeded.
-	UA_STATUSCODE_BADREQUESTTOOLARGE                      = UA_StatusCode(0x80b80000) // The request message size exceeds limits set by the server.
-	UA_STATUSCODE_BADRESPONSETOOLARGE                     = UA_StatusCode(0x80b90000) // The response message size exceeds limits set by the client.
-	UA_STATUSCODE_BADUNKNOWNRESPONSE                      = UA_StatusCode(0x80090000) // An unrecognized response was received from the server.
-	UA_STATUSCODE_BADTIMEOUT                              = UA_StatusCode(0x800a0000) // The operation timed out.
-	UA_STATUSCODE_BADSERVICEUNSUPPORTED                   = UA_StatusCode(0x800b0000) // The server does not support the requested service.
-	UA_STATUSCODE_BADSHUTDOWN                             = UA_StatusCode(0x800c0000) // The operation was cancelled because the application is shutting down.
-	UA_STATUSCODE_BADSERVERNOTCONNECTED                   = UA_StatusCode(0x800d0000) // The operation could not complete because the client is not connected to the server.
-	UA_STATUSCODE_BADSERVERHALTED                         = UA_StatusCode(0x800e0000) // The server has stopped and cannot process any requests.
-	UA_STATUSCODE_BADNOTHINGTODO                          = UA_StatusCode(0x800f0000) // There was nothing to do because the client passed a list of operations with no elements.
-	UA_STATUSCODE_BADTOOMANYOPERATIONS                    = UA_StatusCode(0x80100000) // The request could not be processed because it specified too many operations.
-	UA_STATUSCODE_BADTOOMANYMONITOREDITEMS                = UA_StatusCode(0x80db0000) // The request could not be processed because there are too many monitored items in the subscription.
-	UA_STATUSCODE_BADDATATYPEIDUNKNOWN                    = UA_StatusCode(0x80110000) // The extension object cannot be (de)serialized because the data type id is not recognized.
-	UA_STATUSCODE_BADCERTIFICATEINVALID                   = UA_StatusCode(0x80120000) // The certificate provided as a parameter is not valid.
-	UA_STATUSCODE_BADSECURITYCHECKSFAILED                 = UA_StatusCode(0x80130000) // An error occurred verifying security.
-	UA_STATUSCODE_BADCERTIFICATETIMEINVALID               = UA_StatusCode(0x80140000) // The Certificate has expired or is not yet valid.
-	UA_STATUSCODE_BADCERTIFICATEISSUERTIMEINVALID         = UA_StatusCode(0x80150000) // An Issuer Certificate has expired or is not yet valid.
-	UA_STATUSCODE_BADCERTIFICATEHOSTNAMEINVALID           = UA_StatusCode(0x80160000) // The HostName used to connect to a Server does not match a HostName in the Certificate.
-	UA_STATUSCODE_BADCERTIFICATEURIINVALID                = UA_StatusCode(0x80170000) // The URI specified in the ApplicationDescription does not match the URI in the Certificate.
-	UA_STATUSCODE_BADCERTIFICATEUSENOTALLOWED             = UA_StatusCode(0x80180000) // The Certificate may not be used for the requested operation.
-	UA_STATUSCODE_BADCERTIFICATEISSUERUSENOTALLOWED       = UA_StatusCode(0x80190000) // The Issuer Certificate may not be used for the requested operation.
-	UA_STATUSCODE_BADCERTIFICATEUNTRUSTED                 = UA_StatusCode(0x801a0000) // The Certificate is not trusted.
-	UA_STATUSCODE_BADCERTIFICATEREVOCATIONUNKNOWN         = UA_StatusCode(0x801b0000) // It was not possible to determine if the Certificate has been revoked.
-	UA_STATUSCODE_BADCERTIFICATEISSUERREVOCATIONUNKNOWN   = UA_StatusCode(0x801c0000) // It was not possible to determine if the Issuer Certificate has been revoked.
-	UA_STATUSCODE_BADCERTIFICATEREVOKED                   = UA_StatusCode(0x801d0000) // The Certificate has been revoked.
-	UA_STATUSCODE_BADCERTIFICATEISSUERREVOKED             = UA_StatusCode(0x801e0000) // The Issuer Certificate has been revoked.
-	UA_STATUSCODE_BADUSERACCESSDENIED                     = UA_StatusCode(0x801f0000) // User does not have permission to perform the requested operation.
-	UA_STATUSCODE_BADIDENTITYTOKENINVALID                 = UA_StatusCode(0x80200000) // The user identity token is not valid.
-	UA_STATUSCODE_BADIDENTITYTOKENREJECTED                = UA_StatusCode(0x80210000) // The user identity token is valid but the server has rejected it.
-	UA_STATUSCODE_BADSECURECHANNELIDINVALID               = UA_StatusCode(0x80220000) // The specified secure channel is no longer valid.
-	UA_STATUSCODE_BADINVALIDTIMESTAMP                     = UA_StatusCode(0x80230000) // The timestamp is outside the range allowed by the server.
-	UA_STATUSCODE_BADNONCEINVALID                         = UA_StatusCode(0x80240000) // The nonce does appear to be not a random value or it is not the correct length.
-	UA_STATUSCODE_BADSESSIONIDINVALID                     = UA_StatusCode(0x80250000) // The session id is not valid.
-	UA_STATUSCODE_BADSESSIONCLOSED                        = UA_StatusCode(0x80260000) // The session was closed by the client.
-	UA_STATUSCODE_BADSESSIONNOTACTIVATED                  = UA_StatusCode(0x80270000) // The session cannot be used because ActivateSession has not been called.
-	UA_STATUSCODE_BADSUBSCRIPTIONIDINVALID                = UA_StatusCode(0x80280000) // The subscription id is not valid.
-	UA_STATUSCODE_BADREQUESTHEADERINVALID                 = UA_StatusCode(0x802a0000) // The header for the request is missing or invalid.
-	UA_STATUSCODE_BADTIMESTAMPSTORETURNINVALID            = UA_StatusCode(0x802b0000) // The timestamps to return parameter is invalid.
-	UA_STATUSCODE_BADREQUESTCANCELLEDBYCLIENT             = UA_StatusCode(0x802c0000) // The request was cancelled by the client.
-	UA_STATUSCODE_GOODSUBSCRIPTIONTRANSFERRED             = UA_StatusCode(0x002d0000) // The subscription was transferred to another session.
-	UA_STATUSCODE_GOODCOMPLETESASYNCHRONOUSLY             = UA_StatusCode(0x002e0000) // The processing will complete asynchronously.
-	UA_STATUSCODE_GOODOVERLOAD                            = UA_StatusCode(0x002f0000) // Sampling has slowed down due to resource limitations.
-	UA_STATUSCODE_GOODCLAMPED                             = UA_StatusCode(0x00300000) // The value written was accepted but was clamped.
-	UA_STATUSCODE_BADNOCOMMUNICATION                      = UA_StatusCode(0x80310000) // Communication with the data source is defined, but not established, and there is no last known value available.
-	UA_STATUSCODE_BADWAITINGFORINITIALDATA                = UA_StatusCode(0x80320000) // Waiting for the server to obtain values from the underlying data source.
-	UA_STATUSCODE_BADNODEIDINVALID                        = UA_StatusCode(0x80330000) // The syntax of the node id is not valid.
-	UA_STATUSCODE_BADNODEIDUNKNOWN                        = UA_StatusCode(0x80340000) // The node id refers to a node that does not exist in the server address space.
-	UA_STATUSCODE_BADATTRIBUTEIDINVALID                   = UA_StatusCode(0x80350000) // The attribute is not supported for the specified Node.
-	UA_STATUSCODE_BADINDEXRANGEINVALID                    = UA_StatusCode(0x80360000) // The syntax of the index range parameter is invalid.
-	UA_STATUSCODE_BADINDEXRANGENODATA                     = UA_StatusCode(0x80370000) // No data exists within the range of indexes specified.
-	UA_STATUSCODE_BADDATAENCODINGINVALID                  = UA_StatusCode(0x80380000) // The data encoding is invalid.
-	UA_STATUSCODE_BADDATAENCODINGUNSUPPORTED              = UA_StatusCode(0x80390000) // The server does not support the requested data encoding for the node.
-	UA_STATUSCODE_BADNOTREADABLE                          = UA_StatusCode(0x803a0000) // The access level does not allow reading or subscribing to the Node.
-	UA_STATUSCODE_BADNOTWRITABLE                          = UA_StatusCode(0x803b0000) // The access level does not allow writing to the Node.
-	UA_STATUSCODE_BADOUTOFRANGE                           = UA_StatusCode(0x803c0000) // The value was out of range.
-	UA_STATUSCODE_BADNOTSUPPORTED                         = UA_StatusCode(0x803d0000) // The requested operation is not supported.
-	UA_STATUSCODE_BADNOTFOUND                             = UA_StatusCode(0x803e0000) // A requested item was not found or a search operation ended without success.
-	UA_STATUSCODE_BADOBJECTDELETED                        = UA_StatusCode(0x803f0000) // The object cannot be used because it has been deleted.
-	UA_STATUSCODE_BADNOTIMPLEMENTED                       = UA_StatusCode(0x80400000) // Requested operation is not implemented.
-	UA_STATUSCODE_BADMONITORINGMODEINVALID                = UA_StatusCode(0x80410000) // The monitoring mode is invalid.
-	UA_STATUSCODE_BADMONITOREDITEMIDINVALID               = UA_StatusCode(0x80420000) // The monitoring item id does not refer to a valid monitored item.
-	UA_STATUSCODE_BADMONITOREDITEMFILTERINVALID           = UA_StatusCode(0x80430000) // The monitored item filter parameter is not valid.
-	UA_STATUSCODE_BADMONITOREDITEMFILTERUNSUPPORTED       = UA_StatusCode(0x80440000) // The server does not support the requested monitored item filter.
-	UA_STATUSCODE_BADFILTERNOTALLOWED                     = UA_StatusCode(0x80450000) // A monitoring filter cannot be used in combination with the attribute specified.
-	UA_STATUSCODE_BADSTRUCTUREMISSING                     = UA_StatusCode(0x80460000) // A mandatory structured parameter was missing or null.
-	UA_STATUSCODE_BADEVENTFILTERINVALID                   = UA_StatusCode(0x80470000) // The event filter is not valid.
-	UA_STATUSCODE_BADCONTENTFILTERINVALID                 = UA_StatusCode(0x80480000) // The content filter is not valid.
-	UA_STATUSCODE_BADFILTEROPERATORINVALID                = UA_StatusCode(0x80c10000) // An unrecognized operator was provided in a filter.
-	UA_STATUSCODE_BADFILTEROPERATORUNSUPPORTED            = UA_StatusCode(0x80c20000) // A valid operator was provided, but the server does not provide support for this filter operator.
-	UA_STATUSCODE_BADFILTEROPERANDCOUNTMISMATCH           = UA_StatusCode(0x80c30000) // The number of operands provided for the filter operator was less then expected for the operand provided.
-	UA_STATUSCODE_BADFILTEROPERANDINVALID                 = UA_StatusCode(0x80490000) // The operand used in a content filter is not valid.
-	UA_STATUSCODE_BADFILTERELEMENTINVALID                 = UA_StatusCode(0x80c40000) // The referenced element is not a valid element in the content filter.
-	UA_STATUSCODE_BADFILTERLITERALINVALID                 = UA_StatusCode(0x80c50000) // The referenced literal is not a valid value.
-	UA_STATUSCODE_BADCONTINUATIONPOINTINVALID             = UA_StatusCode(0x804a0000) // The continuation point provide is longer valid.
-	UA_STATUSCODE_BADNOCONTINUATIONPOINTS                 = UA_StatusCode(0x804b0000) // The operation could not be processed because all continuation points have been allocated.
-	UA_STATUSCODE_BADREFERENCETYPEIDINVALID               = UA_StatusCode(0x804c0000) // The operation could not be processed because all continuation points have been allocated.
-	UA_STATUSCODE_BADBROWSEDIRECTIONINVALID               = UA_StatusCode(0x804d0000) // The browse direction is not valid.
-	UA_STATUSCODE_BADNODENOTINVIEW                        = UA_StatusCode(0x804e0000) // The node is not part of the view.
-	UA_STATUSCODE_BADSERVERURIINVALID                     = UA_StatusCode(0x804f0000) // The ServerUri is not a valid URI.
-	UA_STATUSCODE_BADSERVERNAMEMISSING                    = UA_StatusCode(0x80500000) // No ServerName was specified.
-	UA_STATUSCODE_BADDISCOVERYURLMISSING                  = UA_StatusCode(0x80510000) // No DiscoveryUrl was specified.
-	UA_STATUSCODE_BADSEMPAHOREFILEMISSING                 = UA_StatusCode(0x80520000) // The semaphore file specified by the client is not valid.
-	UA_STATUSCODE_BADREQUESTTYPEINVALID                   = UA_StatusCode(0x80530000) // The security token request type is not valid.
-	UA_STATUSCODE_BADSECURITYMODEREJECTED                 = UA_StatusCode(0x80540000) // The security mode does not meet the requirements set by the Server.
-	UA_STATUSCODE_BADSECURITYPOLICYREJECTED               = UA_StatusCode(0x80550000) // The security policy does not meet the requirements set by the Server.
-	UA_STATUSCODE_BADTOOMANYSESSIONS                      = UA_StatusCode(0x80560000) // The server has reached its maximum number of sessions.
-	UA_STATUSCODE_BADUSERSIGNATUREINVALID                 = UA_StatusCode(0x80570000) // The user token signature is missing or invalid.
-	UA_STATUSCODE_BADAPPLICATIONSIGNATUREINVALID          = UA_StatusCode(0x80580000) // The signature generated with the client certificate is missing or invalid.
-	UA_STATUSCODE_BADNOVALIDCERTIFICATES                  = UA_StatusCode(0x80590000) // The client did not provide at least one software certificate that is valid and meets the profile requirements for the server.
-	UA_STATUSCODE_BADIDENTITYCHANGENOTSUPPORTED           = UA_StatusCode(0x80c60000) // The Server does not support changing the user identity assigned to the session.
-	UA_STATUSCODE_BADREQUESTCANCELLEDBYREQUEST            = UA_StatusCode(0x805a0000) // The request was canceled by the client with the Cancel service.
-	UA_STATUSCODE_BADPARENTNODEIDINVALID                  = UA_StatusCode(0x805b0000) // The parent node id does not to refer to a valid node.
-	UA_STATUSCODE_BADREFERENCENOTALLOWED                  = UA_StatusCode(0x805c0000) // The reference could not be created because it violates constraints imposed by the data model.
-	UA_STATUSCODE_BADNODEIDREJECTED                       = UA_StatusCode(0x805d0000) // The requested node id was reject because it was either invalid or server does not allow node ids to be specified by the client.
-	UA_STATUSCODE_BADNODEIDEXISTS                         = UA_StatusCode(0x805e0000) // The requested node id is already used by another node.
-	UA_STATUSCODE_BADNODECLASSINVALID                     = UA_StatusCode(0x805f0000) // The node class is not valid.
-	UA_STATUSCODE_BADBROWSENAMEINVALID                    = UA_StatusCode(0x80600000) // The browse name is invalid.
-	UA_STATUSCODE_BADBROWSENAMEDUPLICATED                 = UA_StatusCode(0x80610000) // The browse name is not unique among nodes that share the same relationship with the parent.
-	UA_STATUSCODE_BADNODEATTRIBUTESINVALID                = UA_StatusCode(0x80620000) // The node attributes are not valid for the node class.
-	UA_STATUSCODE_BADTYPEDEFINITIONINVALID                = UA_StatusCode(0x80630000) // The type definition node id does not reference an appropriate type node.
-	UA_STATUSCODE_BADSOURCENODEIDINVALID                  = UA_StatusCode(0x80640000) // The source node id does not reference a valid node.
-	UA_STATUSCODE_BADTARGETNODEIDINVALID                  = UA_StatusCode(0x80650000) // The target node id does not reference a valid node.
-	UA_STATUSCODE_BADDUPLICATEREFERENCENOTALLOWED         = UA_StatusCode(0x80660000) // The reference type between the nodes is already defined.
-	UA_STATUSCODE_BADINVALIDSELFREFERENCE                 = UA_StatusCode(0x80670000) // The server does not allow this type of self reference on this node.
-	UA_STATUSCODE_BADREFERENCELOCALONLY                   = UA_StatusCode(0x80680000) // The reference type is not valid for a reference to a remote server.
-	UA_STATUSCODE_BADNODELETERIGHTS                       = UA_StatusCode(0x80690000) // The server will not allow the node to be deleted.
-	UA_STATUSCODE_UNCERTAINREFERENCENOTDELETED            = UA_StatusCode(0x40bc0000) // The server was not able to delete all target references.
-	UA_STATUSCODE_BADSERVERINDEXINVALID                   = UA_StatusCode(0x806a0000) // The server index is not valid.
-	UA_STATUSCODE_BADVIEWIDUNKNOWN                        = UA_StatusCode(0x806b0000) // The view id does not refer to a valid view node.
-	UA_STATUSCODE_BADVIEWTIMESTAMPINVALID                 = UA_StatusCode(0x80c90000) // The view timestamp is not available or not supported.
-	UA_STATUSCODE_BADVIEWPARAMETERMISMATCH                = UA_StatusCode(0x80ca0000) // The view parameters are not consistent with each other.
-	UA_STATUSCODE_BADVIEWVERSIONINVALID                   = UA_StatusCode(0x80cb0000) // The view version is not available or not supported.
-	UA_STATUSCODE_UNCERTAINNOTALLNODESAVAILABLE           = UA_StatusCode(0x40c00000) // The list of references may not be complete because the underlying system is not available.
-	UA_STATUSCODE_GOODRESULTSMAYBEINCOMPLETE              = UA_StatusCode(0x00ba0000) // The server should have followed a reference to a node in a remote server but did not. The result set may be incomplete.
-	UA_STATUSCODE_BADNOTTYPEDEFINITION                    = UA_StatusCode(0x80c80000) // The provided Nodeid was not a type definition nodeid.
-	UA_STATUSCODE_UNCERTAINREFERENCEOUTOFSERVER           = UA_StatusCode(0x406c0000) // One of the references to follow in the relative path references to a node in the address space in another server.
-	UA_STATUSCODE_BADTOOMANYMATCHES                       = UA_StatusCode(0x806d0000) // The requested operation has too many matches to return.
-	UA_STATUSCODE_BADQUERYTOOCOMPLEX                      = UA_StatusCode(0x806e0000) // The requested operation requires too many resources in the server.
-	UA_STATUSCODE_BADNOMATCH                              = UA_StatusCode(0x806f0000) // The requested operation has no match to return.
-	UA_STATUSCODE_BADMAXAGEINVALID                        = UA_StatusCode(0x80700000) // The max age parameter is invalid.
-	UA_STATUSCODE_BADHISTORYOPERATIONINVALID              = UA_StatusCode(0x80710000) // The history details parameter is not valid.
-	UA_STATUSCODE_BADHISTORYOPERATIONUNSUPPORTED          = UA_StatusCode(0x80720000) // The server does not support the requested operation.
-	UA_STATUSCODE_BADINVALIDTIMESTAMPARGUMENT             = UA_StatusCode(0x80bd0000) // The defined timestamp to return was invalid.
-	UA_STATUSCODE_BADWRITENOTSUPPORTED                    = UA_StatusCode(0x80730000) // The server not does support writing the combination of value, status and timestamps provided.
-	UA_STATUSCODE_BADTYPEMISMATCH                         = UA_StatusCode(0x80740000) // The value supplied for the attribute is not of the same type as the attribute's value.
-	UA_STATUSCODE_BADMETHODINVALID                        = UA_StatusCode(0x80750000) // The method id does not refer to a method for the specified object.
-	UA_STATUSCODE_BADARGUMENTSMISSING                     = UA_StatusCode(0x80760000) // The client did not specify all of the input arguments for the method.
-	UA_STATUSCODE_BADTOOMANYSUBSCRIPTIONS                 = UA_StatusCode(0x80770000) // The server has reached its  maximum number of subscriptions.
-	UA_STATUSCODE_BADTOOMANYPUBLISHREQUESTS               = UA_StatusCode(0x80780000) // The server has reached the maximum number of queued publish requests.
-	UA_STATUSCODE_BADNOSUBSCRIPTION                       = UA_StatusCode(0x80790000) // There is no subscription available for this session.
-	UA_STATUSCODE_BADSEQUENCENUMBERUNKNOWN                = UA_StatusCode(0x807a0000) // The sequence number is unknown to the server.
-	UA_STATUSCODE_BADMESSAGENOTAVAILABLE                  = UA_StatusCode(0x807b0000) // The requested notification message is no longer available.
-	UA_STATUSCODE_BADINSUFFICIENTCLIENTPROFILE            = UA_StatusCode(0x807c0000) // The Client of the current Session does not support one or more Profiles that are necessary for the Subscription.
-	UA_STATUSCODE_BADSTATENOTACTIVE                       = UA_StatusCode(0x80bf0000) // The sub-state machine is not currently active.
-	UA_STATUSCODE_BADTCPSERVERTOOBUSY                     = UA_StatusCode(0x807d0000) // The server cannot process the request because it is too busy.
-	UA_STATUSCODE_BADTCPMESSAGETYPEINVALID                = UA_StatusCode(0x807e0000) // The type of the message specified in the header invalid.
-	UA_STATUSCODE_BADTCPSECURECHANNELUNKNOWN              = UA_StatusCode(0x807f0000) // The SecureChannelId and/or TokenId are not currently in use.
-	UA_STATUSCODE_BADTCPMESSAGETOOLARGE                   = UA_StatusCode(0x80800000) // The size of the message specified in the header is too large.
-	UA_STATUSCODE_BADTCPNOTENOUGHRESOURCES                = UA_StatusCode(0x80810000) // There are not enough resources to process the request.
-	UA_STATUSCODE_BADTCPINTERNALERROR                     = UA_StatusCode(0x80820000) // An internal error occurred.
-	UA_STATUSCODE_BADTCPENDPOINTURLINVALID                = UA_StatusCode(0x80830000) // The Server does not recognize the QueryString specified.
-	UA_STATUSCODE_BADREQUESTINTERRUPTED                   = UA_StatusCode(0x80840000) // The request could not be sent because of a network interruption.
-	UA_STATUSCODE_BADREQUESTTIMEOUT                       = UA_StatusCode(0x80850000) // Timeout occurred while processing the request.
-	UA_STATUSCODE_BADSECURECHANNELCLOSED                  = UA_StatusCode(0x80860000) // The secure channel has been closed.
-	UA_STATUSCODE_BADSECURECHANNELTOKENUNKNOWN            = UA_StatusCode(0x80870000) // The token has expired or is not recognized.
-	UA_STATUSCODE_BADSEQUENCENUMBERINVALID                = UA_StatusCode(0x80880000) // The sequence number is not valid.
-	UA_STATUSCODE_BADPROTOCOLVERSIONUNSUPPORTED           = UA_StatusCode(0x80be0000) // The applications do not have compatible protocol versions.
-	UA_STATUSCODE_BADCONFIGURATIONERROR                   = UA_StatusCode(0x80890000) // There is a problem with the configuration that affects the usefulness of the value.
-	UA_STATUSCODE_BADNOTCONNECTED                         = UA_StatusCode(0x808a0000) // The variable should receive its value from another variable, but has never been configured to do so.
-	UA_STATUSCODE_BADDEVICEFAILURE                        = UA_StatusCode(0x808b0000) // There has been a failure in the device/data source that generates the value that has affected the value.
-	UA_STATUSCODE_BADSENSORFAILURE                        = UA_StatusCode(0x808c0000) // There has been a failure in the sensor from which the value is derived by the device/data source.
-	UA_STATUSCODE_BADOUTOFSERVICE                         = UA_StatusCode(0x808d0000) // The source of the data is not operational.
-	UA_STATUSCODE_BADDEADBANDFILTERINVALID                = UA_StatusCode(0x808e0000) // The deadband filter is not valid.
-	UA_STATUSCODE_UNCERTAINNOCOMMUNICATIONLASTUSABLEVALUE = UA_StatusCode(0x408f0000) // Communication to the data source has failed. The variable value is the last value that had a good quality.
-	UA_STATUSCODE_UNCERTAINLASTUSABLEVALUE                = UA_StatusCode(0x40900000) // Whatever was updating this value has stopped doing so.
-	UA_STATUSCODE_UNCERTAINSUBSTITUTEVALUE                = UA_StatusCode(0x40910000) // The value is an operational value that was manually overwritten.
-	UA_STATUSCODE_UNCERTAININITIALVALUE                   = UA_StatusCode(0x40920000) // The value is an initial value for a variable that normally receives its value from another variable.
-	UA_STATUSCODE_UNCERTAINSENSORNOTACCURATE              = UA_StatusCode(0x40930000) // The value is at one of the sensor limits.
-	UA_STATUSCODE_UNCERTAINENGINEERINGUNITSEXCEEDED       = UA_StatusCode(0x40940000) // The value is outside of the range of values defined for this parameter.
-	UA_STATUSCODE_UNCERTAINSUBNORMAL                      = UA_StatusCode(0x40950000) // The value is derived from multiple sources and has less than the required number of Good sources.
-	UA_STATUSCODE_GOODLOCALOVERRIDE                       = UA_StatusCode(0x00960000) // The value has been overridden.
-	UA_STATUSCODE_BADREFRESHINPROGRESS                    = UA_StatusCode(0x80970000) // This Condition refresh failed, a Condition refresh operation is already in progress.
-	UA_STATUSCODE_BADCONDITIONALREADYDISABLED             = UA_StatusCode(0x80980000) // This condition has already been disabled.
-	UA_STATUSCODE_BADCONDITIONALREADYENABLED              = UA_StatusCode(0x80cc0000) // This condition has already been enabled.
-	UA_STATUSCODE_BADCONDITIONDISABLED                    = UA_StatusCode(0x80990000) // Property not available, this condition is disabled.
-	UA_STATUSCODE_BADEVENTIDUNKNOWN                       = UA_StatusCode(0x809a0000) // The specified event id is not recognized.
-	UA_STATUSCODE_BADEVENTNOTACKNOWLEDGEABLE              = UA_StatusCode(0x80bb0000) // The event cannot be acknowledged.
-	UA_STATUSCODE_BADDIALOGNOTACTIVE                      = UA_StatusCode(0x80cd0000) // The dialog condition is not active.
-	UA_STATUSCODE_BADDIALOGRESPONSEINVALID                = UA_StatusCode(0x80ce0000) // The response is not valid for the dialog.
-	UA_STATUSCODE_BADCONDITIONBRANCHALREADYACKED          = UA_StatusCode(0x80cf0000) // The condition branch has already been acknowledged.
-	UA_STATUSCODE_BADCONDITIONBRANCHALREADYCONFIRMED      = UA_StatusCode(0x80d00000) // The condition branch has already been confirmed.
-	UA_STATUSCODE_BADCONDITIONALREADYSHELVED              = UA_StatusCode(0x80d10000) // The condition has already been shelved.
-	UA_STATUSCODE_BADCONDITIONNOTSHELVED                  = UA_StatusCode(0x80d20000) // The condition is not currently shelved.
-	UA_STATUSCODE_BADSHELVINGTIMEOUTOFRANGE               = UA_StatusCode(0x80d30000) // The shelving time not within an acceptable range.
-	UA_STATUSCODE_BADNODATA                               = UA_StatusCode(0x809b0000) // No data exists for the requested time range or event filter.
-	UA_STATUSCODE_BADBOUNDNOTFOUND                        = UA_StatusCode(0x80d70000) // No data found to provide upper or lower bound value.
-	UA_STATUSCODE_BADBOUNDNOTSUPPORTED                    = UA_StatusCode(0x80d80000) // The server cannot retrieve a bound for the variable.
-	UA_STATUSCODE_BADDATALOST                             = UA_StatusCode(0x809d0000) // Data is missing due to collection started/stopped/lost.
-	UA_STATUSCODE_BADDATAUNAVAILABLE                      = UA_StatusCode(0x809e0000) // Expected data is unavailable for the requested time range due to an un-mounted volume, an off-line archive or tape, or similar reason for temporary unavailability.
-	UA_STATUSCODE_BADENTRYEXISTS                          = UA_StatusCode(0x809f0000) // The data or event was not successfully inserted because a matching entry exists.
-	UA_STATUSCODE_BADNOENTRYEXISTS                        = UA_StatusCode(0x80a00000) // The data or event was not successfully updated because no matching entry exists.
-	UA_STATUSCODE_BADTIMESTAMPNOTSUPPORTED                = UA_StatusCode(0x80a10000) // The client requested history using a timestamp format the server does not support (i.e requested ServerTimestamp when server only supports SourceTimestamp).
-	UA_STATUSCODE_GOODENTRYINSERTED                       = UA_StatusCode(0x00a20000) // The data or event was successfully inserted into the historical database.
-	UA_STATUSCODE_GOODENTRYREPLACED                       = UA_StatusCode(0x00a30000) // The data or event field was successfully replaced in the historical database.
-	UA_STATUSCODE_UNCERTAINDATASUBNORMAL                  = UA_StatusCode(0x40a40000) // The value is derived from multiple values and has less than the required number of Good values.
-	UA_STATUSCODE_GOODNODATA                              = UA_StatusCode(0x00a50000) // No data exists for the requested time range or event filter.
-	UA_STATUSCODE_GOODMOREDATA                            = UA_StatusCode(0x00a60000) // The data or event field was successfully replaced in the historical database.
-	UA_STATUSCODE_BADAGGREGATELISTMISMATCH                = UA_StatusCode(0x80d40000) // The requested number of Aggregates does not match the requested number of NodeIds.
-	UA_STATUSCODE_BADAGGREGATENOTSUPPORTED                = UA_StatusCode(0x80d50000) // The requested Aggregate is not support by the server.
-	UA_STATUSCODE_BADAGGREGATEINVALIDINPUTS               = UA_StatusCode(0x80d60000) // The aggregate value could not be derived due to invalid data inputs.
-	UA_STATUSCODE_BADAGGREGATECONFIGURATIONREJECTED       = UA_StatusCode(0x80da0000) // The aggregate configuration is not valid for specified node.
-	UA_STATUSCODE_GOODDATAIGNORED                         = UA_StatusCode(0x00d90000) // The request specifies fields which are not valid for the EventType or cannot be saved by the historian.
-	UA_STATUSCODE_GOODCOMMUNICATIONEVENT                  = UA_StatusCode(0x00a70000) // The communication layer has raised an event.
-	UA_STATUSCODE_GOODSHUTDOWNEVENT                       = UA_StatusCode(0x00a80000) // The system is shutting down.
-	UA_STATUSCODE_GOODCALLAGAIN                           = UA_StatusCode(0x00a90000) // The operation is not finished and needs to be called again.
-	UA_STATUSCODE_GOODNONCRITICALTIMEOUT                  = UA_StatusCode(0x00aa0000) // A non-critical timeout occurred.
-	UA_STATUSCODE_BADINVALIDARGUMENT                      = UA_StatusCode(0x80ab0000) // One or more arguments are invalid.
-	UA_STATUSCODE_BADCONNECTIONREJECTED                   = UA_StatusCode(0x80ac0000) // Could not establish a network connection to remote server.
-	UA_STATUSCODE_BADDISCONNECT                           = UA_StatusCode(0x80ad0000) // The server has disconnected from the client.
-	UA_STATUSCODE_BADCONNECTIONCLOSED                     = UA_StatusCode(0x80ae0000) // The network connection has been closed.
-	UA_STATUSCODE_BADINVALIDSTATE                         = UA_StatusCode(0x80af0000) // The operation cannot be completed because the object is closed, uninitialized or in some other invalid state.
-	UA_STATUSCODE_BADENDOFSTREAM                          = UA_StatusCode(0x80b00000) // Cannot move beyond end of the stream.
-	UA_STATUSCODE_BADNODATAAVAILABLE                      = UA_StatusCode(0x80b10000) // No data is currently available for reading from a non-blocking stream.
-	UA_STATUSCODE_BADWAITINGFORRESPONSE                   = UA_StatusCode(0x80b20000) // The asynchronous operation is waiting for a response.
-	UA_STATUSCODE_BADOPERATIONABANDONED                   = UA_StatusCode(0x80b30000) // The asynchronous operation was abandoned by the caller.
-	UA_STATUSCODE_BADEXPECTEDSTREAMTOBLOCK                = UA_StatusCode(0x80b40000) // The stream did not return all data requested (possibly because it is a non-blocking stream).
-	UA_STATUSCODE_BADWOULDBLOCK                           = UA_StatusCode(0x80b50000) // Non blocking behaviour is required and the operation would block.
-	UA_STATUSCODE_BADSYNTAXERROR                          = UA_StatusCode(0x80b60000) // A value had an invalid syntax.
-	UA_STATUSCODE_BADMAXCONNECTIONSREACHED                = UA_StatusCode(0x80b70000) // The operation could not be finished because all available connections are in use.
+	UA_STATUSCODE_BADUNEXPECTEDERROR                      = UA_StatusCode(0x80010000)
+	UA_STATUSCODE_BADINTERNALERROR                        = UA_StatusCode(0x80020000)
+	UA_STATUSCODE_BADOUTOFMEMORY                          = UA_StatusCode(0x80030000)
+	UA_STATUSCODE_BADRESOURCEUNAVAILABLE                  = UA_StatusCode(0x80040000)
+	UA_STATUSCODE_BADCOMMUNICATIONERROR                   = UA_StatusCode(0x80050000)
+	UA_STATUSCODE_BADENCODINGERROR                        = UA_StatusCode(0x80060000)
+	UA_STATUSCODE_BADDECODINGERROR                        = UA_StatusCode(0x80070000)
+	UA_STATUSCODE_BADENCODINGLIMITSEXCEEDED               = UA_StatusCode(0x80080000)
+	UA_STATUSCODE_BADREQUESTTOOLARGE                      = UA_StatusCode(0x80b80000)
+	UA_STATUSCODE_BADRESPONSETOOLARGE                     = UA_StatusCode(0x80b90000)
+	UA_STATUSCODE_BADUNKNOWNRESPONSE                      = UA_StatusCode(0x80090000)
+	UA_STATUSCODE_BADTIMEOUT                              = UA_StatusCode(0x800a0000)
+	UA_STATUSCODE_BADSERVICEUNSUPPORTED                   = UA_StatusCode(0x800b0000)
+	UA_STATUSCODE_BADSHUTDOWN                             = UA_StatusCode(0x800c0000)
+	UA_STATUSCODE_BADSERVERNOTCONNECTED                   = UA_StatusCode(0x800d0000)
+	UA_STATUSCODE_BADSERVERHALTED                         = UA_StatusCode(0x800e0000)
+	UA_STATUSCODE_BADNOTHINGTODO                          = UA_StatusCode(0x800f0000)
+	UA_STATUSCODE_BADTOOMANYOPERATIONS                    = UA_StatusCode(0x80100000)
+	UA_STATUSCODE_BADTOOMANYMONITOREDITEMS                = UA_StatusCode(0x80db0000)
+	UA_STATUSCODE_BADDATATYPEIDUNKNOWN                    = UA_StatusCode(0x80110000)
+	UA_STATUSCODE_BADCERTIFICATEINVALID                   = UA_StatusCode(0x80120000)
+	UA_STATUSCODE_BADSECURITYCHECKSFAILED                 = UA_StatusCode(0x80130000)
+	UA_STATUSCODE_BADCERTIFICATETIMEINVALID               = UA_StatusCode(0x80140000)
+	UA_STATUSCODE_BADCERTIFICATEISSUERTIMEINVALID         = UA_StatusCode(0x80150000)
+	UA_STATUSCODE_BADCERTIFICATEHOSTNAMEINVALID           = UA_StatusCode(0x80160000)
+	UA_STATUSCODE_BADCERTIFICATEURIINVALID                = UA_StatusCode(0x80170000)
+	UA_STATUSCODE_BADCERTIFICATEUSENOTALLOWED             = UA_StatusCode(0x80180000)
+	UA_STATUSCODE_BADCERTIFICATEISSUERUSENOTALLOWED       = UA_StatusCode(0x80190000)
+	UA_STATUSCODE_BADCERTIFICATEUNTRUSTED                 = UA_StatusCode(0x801a0000)
+	UA_STATUSCODE_BADCERTIFICATEREVOCATIONUNKNOWN         = UA_StatusCode(0x801b0000)
+	UA_STATUSCODE_BADCERTIFICATEISSUERREVOCATIONUNKNOWN   = UA_StatusCode(0x801c0000)
+	UA_STATUSCODE_BADCERTIFICATEREVOKED                   = UA_StatusCode(0x801d0000)
+	UA_STATUSCODE_BADCERTIFICATEISSUERREVOKED             = UA_StatusCode(0x801e0000)
+	UA_STATUSCODE_BADUSERACCESSDENIED                     = UA_StatusCode(0x801f0000)
+	UA_STATUSCODE_BADIDENTITYTOKENINVALID                 = UA_StatusCode(0x80200000)
+	UA_STATUSCODE_BADIDENTITYTOKENREJECTED                = UA_StatusCode(0x80210000)
+	UA_STATUSCODE_BADSECURECHANNELIDINVALID               = UA_StatusCode(0x80220000)
+	UA_STATUSCODE_BADINVALIDTIMESTAMP                     = UA_StatusCode(0x80230000)
+	UA_STATUSCODE_BADNONCEINVALID                         = UA_StatusCode(0x80240000)
+	UA_STATUSCODE_BADSESSIONIDINVALID                     = UA_StatusCode(0x80250000)
+	UA_STATUSCODE_BADSESSIONCLOSED                        = UA_StatusCode(0x80260000)
+	UA_STATUSCODE_BADSESSIONNOTACTIVATED                  = UA_StatusCode(0x80270000)
+	UA_STATUSCODE_BADSUBSCRIPTIONIDINVALID                = UA_StatusCode(0x80280000)
+	UA_STATUSCODE_BADREQUESTHEADERINVALID                 = UA_StatusCode(0x802a0000)
+	UA_STATUSCODE_BADTIMESTAMPSTORETURNINVALID            = UA_StatusCode(0x802b0000)
+	UA_STATUSCODE_BADREQUESTCANCELLEDBYCLIENT             = UA_StatusCode(0x802c0000)
+	UA_STATUSCODE_GOODSUBSCRIPTIONTRANSFERRED             = UA_StatusCode(0x002d0000)
+	UA_STATUSCODE_GOODCOMPLETESASYNCHRONOUSLY             = UA_StatusCode(0x002e0000)
+	UA_STATUSCODE_GOODOVERLOAD                            = UA_StatusCode(0x002f0000)
+	UA_STATUSCODE_GOODCLAMPED                             = UA_StatusCode(0x00300000)
+	UA_STATUSCODE_BADNOCOMMUNICATION                      = UA_StatusCode(0x80310000)
+	UA_STATUSCODE_BADWAITINGFORINITIALDATA                = UA_StatusCode(0x80320000)
+	UA_STATUSCODE_BADNODEIDINVALID                        = UA_StatusCode(0x80330000)
+	UA_STATUSCODE_BADNODEIDUNKNOWN                        = UA_StatusCode(0x80340000)
+	UA_STATUSCODE_BADATTRIBUTEIDINVALID                   = UA_StatusCode(0x80350000)
+	UA_STATUSCODE_BADINDEXRANGEINVALID                    = UA_StatusCode(0x80360000)
+	UA_STATUSCODE_BADINDEXRANGENODATA                     = UA_StatusCode(0x80370000)
+	UA_STATUSCODE_BADDATAENCODINGINVALID                  = UA_StatusCode(0x80380000)
+	UA_STATUSCODE_BADDATAENCODINGUNSUPPORTED              = UA_StatusCode(0x80390000)
+	UA_STATUSCODE_BADNOTREADABLE                          = UA_StatusCode(0x803a0000)
+	UA_STATUSCODE_BADNOTWRITABLE                          = UA_StatusCode(0x803b0000)
+	UA_STATUSCODE_BADOUTOFRANGE                           = UA_StatusCode(0x803c0000)
+	UA_STATUSCODE_BADNOTSUPPORTED                         = UA_StatusCode(0x803d0000)
+	UA_STATUSCODE_BADNOTFOUND                             = UA_StatusCode(0x803e0000)
+	UA_STATUSCODE_BADOBJECTDELETED                        = UA_StatusCode(0x803f0000)
+	UA_STATUSCODE_BADNOTIMPLEMENTED                       = UA_StatusCode(0x80400000)
+	UA_STATUSCODE_BADMONITORINGMODEINVALID                = UA_StatusCode(0x80410000)
+	UA_STATUSCODE_BADMONITOREDITEMIDINVALID               = UA_StatusCode(0x80420000)
+	UA_STATUSCODE_BADMONITOREDITEMFILTERINVALID           = UA_StatusCode(0x80430000)
+	UA_STATUSCODE_BADMONITOREDITEMFILTERUNSUPPORTED       = UA_StatusCode(0x80440000)
+	UA_STATUSCODE_BADFILTERNOTALLOWED                     = UA_StatusCode(0x80450000)
+	UA_STATUSCODE_BADSTRUCTUREMISSING                     = UA_StatusCode(0x80460000)
+	UA_STATUSCODE_BADEVENTFILTERINVALID                   = UA_StatusCode(0x80470000)
+	UA_STATUSCODE_BADCONTENTFILTERINVALID                 = UA_StatusCode(0x80480000)
+	UA_STATUSCODE_BADFILTEROPERATORINVALID                = UA_StatusCode(0x80c10000)
+	UA_STATUSCODE_BADFILTEROPERATORUNSUPPORTED            = UA_StatusCode(0x80c20000)
+	UA_STATUSCODE_BADFILTEROPERANDCOUNTMISMATCH           = UA_StatusCode(0x80c30000)
+	UA_STATUSCODE_BADFILTEROPERANDINVALID                 = UA_StatusCode(0x80490000)
+	UA_STATUSCODE_BADFILTERELEMENTINVALID                 = UA_StatusCode(0x80c40000)
+	UA_STATUSCODE_BADFILTERLITERALINVALID                 = UA_StatusCode(0x80c50000)
+	UA_STATUSCODE_BADCONTINUATIONPOINTINVALID             = UA_StatusCode(0x804a0000)
+	UA_STATUSCODE_BADNOCONTINUATIONPOINTS                 = UA_StatusCode(0x804b0000)
+	UA_STATUSCODE_BADREFERENCETYPEIDINVALID               = UA_StatusCode(0x804c0000)
+	UA_STATUSCODE_BADBROWSEDIRECTIONINVALID               = UA_StatusCode(0x804d0000)
+	UA_STATUSCODE_BADNODENOTINVIEW                        = UA_StatusCode(0x804e0000)
+	UA_STATUSCODE_BADSERVERURIINVALID                     = UA_StatusCode(0x804f0000)
+	UA_STATUSCODE_BADSERVERNAMEMISSING                    = UA_StatusCode(0x80500000)
+	UA_STATUSCODE_BADDISCOVERYURLMISSING                  = UA_StatusCode(0x80510000)
+	UA_STATUSCODE_BADSEMPAHOREFILEMISSING                 = UA_StatusCode(0x80520000)
+	UA_STATUSCODE_BADREQUESTTYPEINVALID                   = UA_StatusCode(0x80530000)
+	UA_STATUSCODE_BADSECURITYMODEREJECTED                 = UA_StatusCode(0x80540000)
+	UA_STATUSCODE_BADSECURITYPOLICYREJECTED               = UA_StatusCode(0x80550000)
+	UA_STATUSCODE_BADTOOMANYSESSIONS                      = UA_StatusCode(0x80560000)
+	UA_STATUSCODE_BADUSERSIGNATUREINVALID                 = UA_StatusCode(0x80570000)
+	UA_STATUSCODE_BADAPPLICATIONSIGNATUREINVALID          = UA_StatusCode(0x80580000)
+	UA_STATUSCODE_BADNOVALIDCERTIFICATES                  = UA_StatusCode(0x80590000)
+	UA_STATUSCODE_BADIDENTITYCHANGENOTSUPPORTED           = UA_StatusCode(0x80c60000)
+	UA_STATUSCODE_BADREQUESTCANCELLEDBYREQUEST            = UA_StatusCode(0x805a0000)
+	UA_STATUSCODE_BADPARENTNODEIDINVALID                  = UA_StatusCode(0x805b0000)
+	UA_STATUSCODE_BADREFERENCENOTALLOWED                  = UA_StatusCode(0x805c0000)
+	UA_STATUSCODE_BADNODEIDREJECTED                       = UA_StatusCode(0x805d0000)
+	UA_STATUSCODE_BADNODEIDEXISTS                         = UA_StatusCode(0x805e0000)
+	UA_STATUSCODE_BADNODECLASSINVALID                     = UA_StatusCode(0x805f0000)
+	UA_STATUSCODE_BADBROWSENAMEINVALID                    = UA_StatusCode(0x80600000)
+	UA_STATUSCODE_BADBROWSENAMEDUPLICATED                 = UA_StatusCode(0x80610000)
+	UA_STATUSCODE_BADNODEATTRIBUTESINVALID                = UA_StatusCode(0x80620000)
+	UA_STATUSCODE_BADTYPEDEFINITIONINVALID                = UA_StatusCode(0x80630000)
+	UA_STATUSCODE_BADSOURCENODEIDINVALID                  = UA_StatusCode(0x80640000)
+	UA_STATUSCODE_BADTARGETNODEIDINVALID                  = UA_StatusCode(0x80650000)
+	UA_STATUSCODE_BADDUPLICATEREFERENCENOTALLOWED         = UA_StatusCode(0x80660000)
+	UA_STATUSCODE_BADINVALIDSELFREFERENCE                 = UA_StatusCode(0x80670000)
+	UA_STATUSCODE_BADREFERENCELOCALONLY                   = UA_StatusCode(0x80680000)
+	UA_STATUSCODE_BADNODELETERIGHTS                       = UA_StatusCode(0x80690000)
+	UA_STATUSCODE_UNCERTAINREFERENCENOTDELETED            = UA_StatusCode(0x40bc0000)
+	UA_STATUSCODE_BADSERVERINDEXINVALID                   = UA_StatusCode(0x806a0000)
+	UA_STATUSCODE_BADVIEWIDUNKNOWN                        = UA_StatusCode(0x806b0000)
+	UA_STATUSCODE_BADVIEWTIMESTAMPINVALID                 = UA_StatusCode(0x80c90000)
+	UA_STATUSCODE_BADVIEWPARAMETERMISMATCH                = UA_StatusCode(0x80ca0000)
+	UA_STATUSCODE_BADVIEWVERSIONINVALID                   = UA_StatusCode(0x80cb0000)
+	UA_STATUSCODE_UNCERTAINNOTALLNODESAVAILABLE           = UA_StatusCode(0x40c00000)
+	UA_STATUSCODE_GOODRESULTSMAYBEINCOMPLETE              = UA_StatusCode(0x00ba0000)
+	UA_STATUSCODE_BADNOTTYPEDEFINITION                    = UA_StatusCode(0x80c80000)
+	UA_STATUSCODE_UNCERTAINREFERENCEOUTOFSERVER           = UA_StatusCode(0x406c0000)
+	UA_STATUSCODE_BADTOOMANYMATCHES                       = UA_StatusCode(0x806d0000)
+	UA_STATUSCODE_BADQUERYTOOCOMPLEX                      = UA_StatusCode(0x806e0000)
+	UA_STATUSCODE_BADNOMATCH                              = UA_StatusCode(0x806f0000)
+	UA_STATUSCODE_BADMAXAGEINVALID                        = UA_StatusCode(0x80700000)
+	UA_STATUSCODE_BADHISTORYOPERATIONINVALID              = UA_StatusCode(0x80710000)
+	UA_STATUSCODE_BADHISTORYOPERATIONUNSUPPORTED          = UA_StatusCode(0x80720000)
+	UA_STATUSCODE_BADINVALIDTIMESTAMPARGUMENT             = UA_StatusCode(0x80bd0000)
+	UA_STATUSCODE_BADWRITENOTSUPPORTED                    = UA_StatusCode(0x80730000)
+	UA_STATUSCODE_BADTYPEMISMATCH                         = UA_StatusCode(0x80740000)
+	UA_STATUSCODE_BADMETHODINVALID                        = UA_StatusCode(0x80750000)
+	UA_STATUSCODE_BADARGUMENTSMISSING                     = UA_StatusCode(0x80760000)
+	UA_STATUSCODE_BADTOOMANYSUBSCRIPTIONS                 = UA_StatusCode(0x80770000)
+	UA_STATUSCODE_BADTOOMANYPUBLISHREQUESTS               = UA_StatusCode(0x80780000)
+	UA_STATUSCODE_BADNOSUBSCRIPTION                       = UA_StatusCode(0x80790000)
+	UA_STATUSCODE_BADSEQUENCENUMBERUNKNOWN                = UA_StatusCode(0x807a0000)
+	UA_STATUSCODE_BADMESSAGENOTAVAILABLE                  = UA_StatusCode(0x807b0000)
+	UA_STATUSCODE_BADINSUFFICIENTCLIENTPROFILE            = UA_StatusCode(0x807c0000)
+	UA_STATUSCODE_BADSTATENOTACTIVE                       = UA_StatusCode(0x80bf0000)
+	UA_STATUSCODE_BADTCPSERVERTOOBUSY                     = UA_StatusCode(0x807d0000)
+	UA_STATUSCODE_BADTCPMESSAGETYPEINVALID                = UA_StatusCode(0x807e0000)
+	UA_STATUSCODE_BADTCPSECURECHANNELUNKNOWN              = UA_StatusCode(0x807f0000)
+	UA_STATUSCODE_BADTCPMESSAGETOOLARGE                   = UA_StatusCode(0x80800000)
+	UA_STATUSCODE_BADTCPNOTENOUGHRESOURCES                = UA_StatusCode(0x80810000)
+	UA_STATUSCODE_BADTCPINTERNALERROR                     = UA_StatusCode(0x80820000)
+	UA_STATUSCODE_BADTCPENDPOINTURLINVALID                = UA_StatusCode(0x80830000)
+	UA_STATUSCODE_BADREQUESTINTERRUPTED                   = UA_StatusCode(0x80840000)
+	UA_STATUSCODE_BADREQUESTTIMEOUT                       = UA_StatusCode(0x80850000)
+	UA_STATUSCODE_BADSECURECHANNELCLOSED                  = UA_StatusCode(0x80860000)
+	UA_STATUSCODE_BADSECURECHANNELTOKENUNKNOWN            = UA_StatusCode(0x80870000)
+	UA_STATUSCODE_BADSEQUENCENUMBERINVALID                = UA_StatusCode(0x80880000)
+	UA_STATUSCODE_BADPROTOCOLVERSIONUNSUPPORTED           = UA_StatusCode(0x80be0000)
+	UA_STATUSCODE_BADCONFIGURATIONERROR                   = UA_StatusCode(0x80890000)
+	UA_STATUSCODE_BADNOTCONNECTED                         = UA_StatusCode(0x808a0000)
+	UA_STATUSCODE_BADDEVICEFAILURE                        = UA_StatusCode(0x808b0000)
+	UA_STATUSCODE_BADSENSORFAILURE                        = UA_StatusCode(0x808c0000)
+	UA_STATUSCODE_BADOUTOFSERVICE                         = UA_StatusCode(0x808d0000)
+	UA_STATUSCODE_BADDEADBANDFILTERINVALID                = UA_StatusCode(0x808e0000)
+	UA_STATUSCODE_UNCERTAINNOCOMMUNICATIONLASTUSABLEVALUE = UA_StatusCode(0x408f0000)
+	UA_STATUSCODE_UNCERTAINLASTUSABLEVALUE                = UA_StatusCode(0x40900000)
+	UA_STATUSCODE_UNCERTAINSUBSTITUTEVALUE                = UA_StatusCode(0x40910000)
+	UA_STATUSCODE_UNCERTAININITIALVALUE                   = UA_StatusCode(0x40920000)
+	UA_STATUSCODE_UNCERTAINSENSORNOTACCURATE              = UA_StatusCode(0x40930000)
+	UA_STATUSCODE_UNCERTAINENGINEERINGUNITSEXCEEDED       = UA_StatusCode(0x40940000)
+	UA_STATUSCODE_UNCERTAINSUBNORMAL                      = UA_StatusCode(0x40950000)
+	UA_STATUSCODE_GOODLOCALOVERRIDE                       = UA_StatusCode(0x00960000)
+	UA_STATUSCODE_BADREFRESHINPROGRESS                    = UA_StatusCode(0x80970000)
+	UA_STATUSCODE_BADCONDITIONALREADYDISABLED             = UA_StatusCode(0x80980000)
+	UA_STATUSCODE_BADCONDITIONALREADYENABLED              = UA_StatusCode(0x80cc0000)
+	UA_STATUSCODE_BADCONDITIONDISABLED                    = UA_StatusCode(0x80990000)
+	UA_STATUSCODE_BADEVENTIDUNKNOWN                       = UA_StatusCode(0x809a0000)
+	UA_STATUSCODE_BADEVENTNOTACKNOWLEDGEABLE              = UA_StatusCode(0x80bb0000)
+	UA_STATUSCODE_BADDIALOGNOTACTIVE                      = UA_StatusCode(0x80cd0000)
+	UA_STATUSCODE_BADDIALOGRESPONSEINVALID                = UA_StatusCode(0x80ce0000)
+	UA_STATUSCODE_BADCONDITIONBRANCHALREADYACKED          = UA_StatusCode(0x80cf0000)
+	UA_STATUSCODE_BADCONDITIONBRANCHALREADYCONFIRMED      = UA_StatusCode(0x80d00000)
+	UA_STATUSCODE_BADCONDITIONALREADYSHELVED              = UA_StatusCode(0x80d10000)
+	UA_STATUSCODE_BADCONDITIONNOTSHELVED                  = UA_StatusCode(0x80d20000)
+	UA_STATUSCODE_BADSHELVINGTIMEOUTOFRANGE               = UA_StatusCode(0x80d30000)
+	UA_STATUSCODE_BADNODATA                               = UA_StatusCode(0x809b0000)
+	UA_STATUSCODE_BADBOUNDNOTFOUND                        = UA_StatusCode(0x80d70000)
+	UA_STATUSCODE_BADBOUNDNOTSUPPORTED                    = UA_StatusCode(0x80d80000)
+	UA_STATUSCODE_BADDATALOST                             = UA_StatusCode(0x809d0000)
+	UA_STATUSCODE_BADDATAUNAVAILABLE                      = UA_StatusCode(0x809e0000)
+	UA_STATUSCODE_BADENTRYEXISTS                          = UA_StatusCode(0x809f0000)
+	UA_STATUSCODE_BADNOENTRYEXISTS                        = UA_StatusCode(0x80a00000)
+	UA_STATUSCODE_BADTIMESTAMPNOTSUPPORTED                = UA_StatusCode(0x80a10000)
+	UA_STATUSCODE_GOODENTRYINSERTED                       = UA_StatusCode(0x00a20000)
+	UA_STATUSCODE_GOODENTRYREPLACED                       = UA_StatusCode(0x00a30000)
+	UA_STATUSCODE_UNCERTAINDATASUBNORMAL                  = UA_StatusCode(0x40a40000)
+	UA_STATUSCODE_GOODNODATA                              = UA_StatusCode(0x00a50000)
+	UA_STATUSCODE_GOODMOREDATA                            = UA_StatusCode(0x00a60000)
+	UA_STATUSCODE_BADAGGREGATELISTMISMATCH                = UA_StatusCode(0x80d40000)
+	UA_STATUSCODE_BADAGGREGATENOTSUPPORTED                = UA_StatusCode(0x80d50000)
+	UA_STATUSCODE_BADAGGREGATEINVALIDINPUTS               = UA_StatusCode(0x80d60000)
+	UA_STATUSCODE_BADAGGREGATECONFIGURATIONREJECTED       = UA_StatusCode(0x80da0000)
+	UA_STATUSCODE_GOODDATAIGNORED                         = UA_StatusCode(0x00d90000)
+	UA_STATUSCODE_GOODCOMMUNICATIONEVENT                  = UA_StatusCode(0x00a70000)
+	UA_STATUSCODE_GOODSHUTDOWNEVENT                       = UA_StatusCode(0x00a80000)
+	UA_STATUSCODE_GOODCALLAGAIN                           = UA_StatusCode(0x00a90000)
+	UA_STATUSCODE_GOODNONCRITICALTIMEOUT                  = UA_StatusCode(0x00aa0000)
+	UA_STATUSCODE_BADINVALIDARGUMENT                      = UA_StatusCode(0x80ab0000)
+	UA_STATUSCODE_BADCONNECTIONREJECTED                   = UA_StatusCode(0x80ac0000)
+	UA_STATUSCODE_BADDISCONNECT                           = UA_StatusCode(0x80ad0000)
+	UA_STATUSCODE_BADCONNECTIONCLOSED                     = UA_StatusCode(0x80ae0000)
+	UA_STATUSCODE_BADINVALIDSTATE                         = UA_StatusCode(0x80af0000)
+	UA_STATUSCODE_BADENDOFSTREAM                          = UA_StatusCode(0x80b00000)
+	UA_STATUSCODE_BADNODATAAVAILABLE                      = UA_StatusCode(0x80b10000)
+	UA_STATUSCODE_BADWAITINGFORRESPONSE                   = UA_StatusCode(0x80b20000)
+	UA_STATUSCODE_BADOPERATIONABANDONED                   = UA_StatusCode(0x80b30000)
+	UA_STATUSCODE_BADEXPECTEDSTREAMTOBLOCK                = UA_StatusCode(0x80b40000)
+	UA_STATUSCODE_BADWOULDBLOCK                           = UA_StatusCode(0x80b50000)
+	UA_STATUSCODE_BADSYNTAXERROR                          = UA_StatusCode(0x80b60000)
+	UA_STATUSCODE_BADMAXCONNECTIONSREACHED                = UA_StatusCode(0x80b70000)
 )
 
-type UA_Boolean C.UA_Boolean                 // line: 454
-type UA_SByte C.UA_SByte                     // line: 459
-type UA_Byte C.UA_Byte                       // line: 464
-type UA_Int16 C.UA_Int16                     // line: 469
-type UA_UInt16 C.UA_UInt16                   // line: 474
-type UA_Int32 C.UA_Int32                     // line: 479
-type UA_UInt32 C.UA_UInt32                   // line: 484
-type UA_Int64 C.UA_Int64                     // line: 492
-type UA_UInt64 C.UA_UInt64                   // line: 497
-type UA_Float C.UA_Float                     // line: 502
-type UA_Double C.UA_Double                   // line: 505
-type UA_String C.UA_String                   // line: 513
-type UA_DateTime C.UA_DateTime               // line: 534
-type UA_DateTimeStruct C.UA_DateTimeStruct   // line: 560
-type UA_Guid C.UA_Guid                       // line: 574
-type UA_ByteString C.UA_ByteString           // line: 584
-type UA_XmlElement C.UA_XmlElement           // line: 606
-type UA_NodeId C.UA_NodeId                   // line: 627
-type UA_ExpandedNodeId C.UA_ExpandedNodeId   // line: 669
-type UA_QualifiedName C.UA_QualifiedName     // line: 701
-type UA_LocalizedText C.UA_LocalizedText     // line: 715
-type UA_DataType C.UA_DataType               // line: 727
-type UA_ExtensionObject C.UA_ExtensionObject // line: 751
-type UA_Variant C.UA_Variant                 // line: 773
-type UA_NumericRange C.UA_NumericRange       // line: 844
-type UA_DataValue C.UA_DataValue             // line: 902
-type UA_DiagnosticInfo C.UA_DiagnosticInfo   // line: 923
-type UA_DataTypeMember C.UA_DataTypeMember   // line: 943
-type UA_AttributeId C.UA_AttributeId         // line: 1072
+type UA_Boolean bool
+type UA_SByte int8
+type UA_Byte uint8
+type UA_Int16 int16
+type UA_UInt16 uint16
+type UA_Int32 int32
+type UA_UInt32 uint32
+type UA_Int64 int64
+type UA_UInt64 uint64
+type UA_Float float32
+type UA_Double float64
+type UA_String struct {
+	Length uint64
+	Data   *uint8
+}
+type UA_DateTime int64
+type UA_DateTimeStruct struct {
+	NanoSec  uint16
+	MicroSec uint16
+	MilliSec uint16
+	Sec      uint16
+	Min      uint16
+	Hour     uint16
+	Day      uint16
+	Month    uint16
+	Year     uint16
+}
+type UA_Guid struct {
+	Data1 uint32
+	Data2 uint16
+	Data3 uint16
+	Data4 [8]uint8
+}
+type UA_ByteString struct {
+	Length uint64
+	Data   *uint8
+}
+type UA_XmlElement struct {
+	Length uint64
+	Data   *uint8
+}
+type UA_NodeId struct {
+	NamespaceIndex uint16
+	Pad_cgo_0      [2]byte
+	IdentifierType uint32
+	Identifier     [16]byte
+}
+type UA_ExpandedNodeId struct {
+	NodeId       UA_NodeId
+	NamespaceUri UA_ByteString
+	ServerIndex  uint32
+	Pad_cgo_0    [4]byte
+}
+type UA_QualifiedName struct {
+	NamespaceIndex uint16
+	Pad_cgo_0      [6]byte
+	Name           UA_ByteString
+}
+type UA_LocalizedText struct {
+	Locale UA_ByteString
+	Text   UA_ByteString
+}
+type UA_DataType struct {
+	TypeId      UA_NodeId
+	MemSize     uint16
+	TypeIndex   uint16
+	MembersSize uint8
+	Pad_cgo_0   [3]byte
+	Members     *UA_DataTypeMember
+}
+type UA_ExtensionObject struct {
+	Encoding  uint32
+	Pad_cgo_0 [4]byte
+	Content   [40]byte
+}
+type UA_Variant struct {
+	Type                *UA_DataType
+	StorageType         uint32
+	Pad_cgo_0           [4]byte
+	ArrayLength         uint64
+	Data                *byte
+	ArrayDimensionsSize uint64
+	ArrayDimensions     *uint32
+}
+type UA_NumericRangeDimension struct {
+	Min uint32
+	Max uint32
+}
+type UA_NumericRange struct {
+	DimensionsSize uint64
+	Dimensions     *UA_NumericRangeDimension
+}
+type UA_DataValue struct {
+	Pad_cgo_0         [8]byte
+	Value             UA_Variant
+	Status            uint32
+	Pad_cgo_1         [4]byte
+	SourceTimestamp   int64
+	SourcePicoseconds uint16
+	Pad_cgo_2         [6]byte
+	ServerTimestamp   int64
+	ServerPicoseconds uint16
+	Pad_cgo_3         [6]byte
+}
+type UA_DiagnosticInfo struct {
+	Pad_cgo_0           [4]byte
+	SymbolicId          int32
+	NamespaceUri        int32
+	LocalizedText       int32
+	Locale              int32
+	Pad_cgo_1           [4]byte
+	AdditionalInfo      UA_ByteString
+	InnerStatusCode     uint32
+	Pad_cgo_2           [4]byte
+	InnerDiagnosticInfo *UA_DiagnosticInfo
+}
+type UA_DataTypeMember struct {
+	MemberTypeIndex uint16
+	Padding         uint8
+	Pad_cgo_0       [1]byte
+}
+type UA_AttributeId uint32
+
 const (
 	UA_ATTRIBUTEID_NODEID                  = UA_AttributeId(1)
 	UA_ATTRIBUTEID_NODECLASS               = UA_AttributeId(2)
@@ -285,7 +373,8 @@ const (
 	UA_ATTRIBUTEID_USEREXECUTABLE          = UA_AttributeId(22)
 )
 
-type UA_AccessLevelMask C.UA_AccessLevelMask // line: 1080
+type UA_AccessLevelMask uint32
+
 const (
 	UA_ACCESSLEVELMASK_READ           = UA_AccessLevelMask(0x01)
 	UA_ACCESSLEVELMASK_WRITE          = UA_AccessLevelMask(0x02)
@@ -294,7 +383,8 @@ const (
 	UA_ACCESSLEVELMASK_SEMANTICCHANGE = UA_AccessLevelMask(0x10)
 )
 
-type UA_IdType C.UA_IdType // line: 2015
+type UA_IdType uint32
+
 const (
 	UA_IDTYPE_NUMERIC = UA_IdType(0)
 	UA_IDTYPE_STRING  = UA_IdType(1)
@@ -302,7 +392,8 @@ const (
 	UA_IDTYPE_OPAQUE  = UA_IdType(3)
 )
 
-type UA_NodeClass C.UA_NodeClass // line: 2034
+type UA_NodeClass uint32
+
 const (
 	UA_NODECLASS_UNSPECIFIED   = UA_NodeClass(0)
 	UA_NODECLASS_OBJECT        = UA_NodeClass(1)
@@ -315,9 +406,23 @@ const (
 	UA_NODECLASS_VIEW          = UA_NodeClass(128)
 )
 
-type UA_ReferenceNode C.UA_ReferenceNode     // line: 2047
-type UA_Argument C.UA_Argument               // line: 2063
-type UA_ApplicationType C.UA_ApplicationType // line: 2077
+type UA_ReferenceNode struct {
+	ReferenceTypeId UA_NodeId
+	IsInverse       bool
+	Pad_cgo_0       [7]byte
+	TargetId        UA_ExpandedNodeId
+}
+type UA_Argument struct {
+	Name                UA_ByteString
+	DataType            UA_NodeId
+	ValueRank           int32
+	Pad_cgo_0           [4]byte
+	ArrayDimensionsSize uint64
+	ArrayDimensions     *uint32
+	Description         UA_LocalizedText
+}
+type UA_ApplicationType uint32
+
 const (
 	UA_APPLICATIONTYPE_SERVER          = UA_ApplicationType(0)
 	UA_APPLICATIONTYPE_CLIENT          = UA_ApplicationType(1)
@@ -325,13 +430,54 @@ const (
 	UA_APPLICATIONTYPE_DISCOVERYSERVER = UA_ApplicationType(3)
 )
 
-type UA_ApplicationDescription C.UA_ApplicationDescription // line: 2095
-type UA_RequestHeader C.UA_RequestHeader                   // line: 2112
-type UA_ResponseHeader C.UA_ResponseHeader                 // line: 2129
-type UA_ServiceFault C.UA_ServiceFault                     // line: 2140
-type UA_FindServersRequest C.UA_FindServersRequest         // line: 2156
-type UA_FindServersResponse C.UA_FindServersResponse       // line: 2169
-type UA_MessageSecurityMode C.UA_MessageSecurityMode       // line: 2183
+type UA_ApplicationDescription struct {
+	ApplicationUri      UA_ByteString
+	ProductUri          UA_ByteString
+	ApplicationName     UA_LocalizedText
+	ApplicationType     uint32
+	Pad_cgo_0           [4]byte
+	GatewayServerUri    UA_ByteString
+	DiscoveryProfileUri UA_ByteString
+	DiscoveryUrlsSize   uint64
+	DiscoveryUrls       *UA_ByteString
+}
+type UA_RequestHeader struct {
+	AuthenticationToken UA_NodeId
+	Timestamp           int64
+	RequestHandle       uint32
+	ReturnDiagnostics   uint32
+	AuditEntryId        UA_ByteString
+	TimeoutHint         uint32
+	Pad_cgo_0           [4]byte
+	AdditionalHeader    UA_ExtensionObject
+}
+type UA_ResponseHeader struct {
+	Timestamp          int64
+	RequestHandle      uint32
+	ServiceResult      uint32
+	ServiceDiagnostics UA_DiagnosticInfo
+	StringTableSize    uint64
+	StringTable        *UA_ByteString
+	AdditionalHeader   UA_ExtensionObject
+}
+type UA_ServiceFault struct {
+	ResponseHeader UA_ResponseHeader
+}
+type UA_FindServersRequest struct {
+	RequestHeader  UA_RequestHeader
+	EndpointUrl    UA_ByteString
+	LocaleIdsSize  uint64
+	LocaleIds      *UA_ByteString
+	ServerUrisSize uint64
+	ServerUris     *UA_ByteString
+}
+type UA_FindServersResponse struct {
+	ResponseHeader UA_ResponseHeader
+	ServersSize    uint64
+	Servers        *UA_ApplicationDescription
+}
+type UA_MessageSecurityMode uint32
+
 const (
 	UA_MESSAGESECURITYMODE_INVALID        = UA_MessageSecurityMode(0)
 	UA_MESSAGESECURITYMODE_NONE           = UA_MessageSecurityMode(1)
@@ -339,7 +485,8 @@ const (
 	UA_MESSAGESECURITYMODE_SIGNANDENCRYPT = UA_MessageSecurityMode(3)
 )
 
-type UA_UserTokenType C.UA_UserTokenType // line: 2197
+type UA_UserTokenType uint32
+
 const (
 	UA_USERTOKENTYPE_ANONYMOUS   = UA_UserTokenType(0)
 	UA_USERTOKENTYPE_USERNAME    = UA_UserTokenType(1)
@@ -347,33 +494,152 @@ const (
 	UA_USERTOKENTYPE_ISSUEDTOKEN = UA_UserTokenType(3)
 )
 
-type UA_UserTokenPolicy C.UA_UserTokenPolicy                   // line: 2212
-type UA_EndpointDescription C.UA_EndpointDescription           // line: 2231
-type UA_GetEndpointsRequest C.UA_GetEndpointsRequest           // line: 2247
-type UA_GetEndpointsResponse C.UA_GetEndpointsResponse         // line: 2260
-type UA_SecurityTokenRequestType C.UA_SecurityTokenRequestType // line: 2272
+type UA_UserTokenPolicy struct {
+	PolicyId          UA_ByteString
+	TokenType         uint32
+	Pad_cgo_0         [4]byte
+	IssuedTokenType   UA_ByteString
+	IssuerEndpointUrl UA_ByteString
+	SecurityPolicyUri UA_ByteString
+}
+type UA_EndpointDescription struct {
+	EndpointUrl            UA_ByteString
+	Server                 UA_ApplicationDescription
+	ServerCertificate      UA_ByteString
+	SecurityMode           uint32
+	Pad_cgo_0              [4]byte
+	SecurityPolicyUri      UA_ByteString
+	UserIdentityTokensSize uint64
+	UserIdentityTokens     *UA_UserTokenPolicy
+	TransportProfileUri    UA_ByteString
+	SecurityLevel          uint8
+	Pad_cgo_1              [7]byte
+}
+type UA_GetEndpointsRequest struct {
+	RequestHeader   UA_RequestHeader
+	EndpointUrl     UA_ByteString
+	LocaleIdsSize   uint64
+	LocaleIds       *UA_ByteString
+	ProfileUrisSize uint64
+	ProfileUris     *UA_ByteString
+}
+type UA_GetEndpointsResponse struct {
+	ResponseHeader UA_ResponseHeader
+	EndpointsSize  uint64
+	Endpoints      *UA_EndpointDescription
+}
+type UA_SecurityTokenRequestType uint32
+
 const (
 	UA_SECURITYTOKENREQUESTTYPE_ISSUE = UA_SecurityTokenRequestType(0)
 	UA_SECURITYTOKENREQUESTTYPE_RENEW = UA_SecurityTokenRequestType(1)
 )
 
-type UA_ChannelSecurityToken C.UA_ChannelSecurityToken             // line: 2286
-type UA_OpenSecureChannelRequest C.UA_OpenSecureChannelRequest     // line: 2302
-type UA_OpenSecureChannelResponse C.UA_OpenSecureChannelResponse   // line: 2316
-type UA_CloseSecureChannelRequest C.UA_CloseSecureChannelRequest   // line: 2327
-type UA_CloseSecureChannelResponse C.UA_CloseSecureChannelResponse // line: 2338
-type UA_SignedSoftwareCertificate C.UA_SignedSoftwareCertificate   // line: 2350
-type UA_SignatureData C.UA_SignatureData                           // line: 2362
-type UA_CreateSessionRequest C.UA_CreateSessionRequest             // line: 2381
-type UA_CreateSessionResponse C.UA_CreateSessionResponse           // line: 2403
-type UA_UserIdentityToken C.UA_UserIdentityToken                   // line: 2414
-type UA_AnonymousIdentityToken C.UA_AnonymousIdentityToken         // line: 2425
-type UA_UserNameIdentityToken C.UA_UserNameIdentityToken           // line: 2439
-type UA_ActivateSessionRequest C.UA_ActivateSessionRequest         // line: 2457
-type UA_ActivateSessionResponse C.UA_ActivateSessionResponse       // line: 2473
-type UA_CloseSessionRequest C.UA_CloseSessionRequest               // line: 2485
-type UA_CloseSessionResponse C.UA_CloseSessionResponse             // line: 2496
-type UA_NodeAttributesMask C.UA_NodeAttributesMask                 // line: 2538
+type UA_ChannelSecurityToken struct {
+	ChannelId       uint32
+	TokenId         uint32
+	CreatedAt       int64
+	RevisedLifetime uint32
+	Pad_cgo_0       [4]byte
+}
+type UA_OpenSecureChannelRequest struct {
+	RequestHeader         UA_RequestHeader
+	ClientProtocolVersion uint32
+	RequestType           uint32
+	SecurityMode          uint32
+	Pad_cgo_0             [4]byte
+	ClientNonce           UA_ByteString
+	RequestedLifetime     uint32
+	Pad_cgo_1             [4]byte
+}
+type UA_OpenSecureChannelResponse struct {
+	ResponseHeader        UA_ResponseHeader
+	ServerProtocolVersion uint32
+	Pad_cgo_0             [4]byte
+	SecurityToken         UA_ChannelSecurityToken
+	ServerNonce           UA_ByteString
+}
+type UA_CloseSecureChannelRequest struct {
+	RequestHeader UA_RequestHeader
+}
+type UA_CloseSecureChannelResponse struct {
+	ResponseHeader UA_ResponseHeader
+}
+type UA_SignedSoftwareCertificate struct {
+	CertificateData UA_ByteString
+	Signature       UA_ByteString
+}
+type UA_SignatureData struct {
+	Algorithm UA_ByteString
+	Signature UA_ByteString
+}
+type UA_CreateSessionRequest struct {
+	RequestHeader           UA_RequestHeader
+	ClientDescription       UA_ApplicationDescription
+	ServerUri               UA_ByteString
+	EndpointUrl             UA_ByteString
+	SessionName             UA_ByteString
+	ClientNonce             UA_ByteString
+	ClientCertificate       UA_ByteString
+	RequestedSessionTimeout float64
+	MaxResponseMessageSize  uint32
+	Pad_cgo_0               [4]byte
+}
+type UA_CreateSessionResponse struct {
+	ResponseHeader                 UA_ResponseHeader
+	SessionId                      UA_NodeId
+	AuthenticationToken            UA_NodeId
+	RevisedSessionTimeout          float64
+	ServerNonce                    UA_ByteString
+	ServerCertificate              UA_ByteString
+	ServerEndpointsSize            uint64
+	ServerEndpoints                *UA_EndpointDescription
+	ServerSoftwareCertificatesSize uint64
+	ServerSoftwareCertificates     *UA_SignedSoftwareCertificate
+	ServerSignature                UA_SignatureData
+	MaxRequestMessageSize          uint32
+	Pad_cgo_0                      [4]byte
+}
+type UA_UserIdentityToken struct {
+	PolicyId UA_ByteString
+}
+type UA_AnonymousIdentityToken struct {
+	PolicyId UA_ByteString
+}
+type UA_UserNameIdentityToken struct {
+	PolicyId            UA_ByteString
+	UserName            UA_ByteString
+	Password            UA_ByteString
+	EncryptionAlgorithm UA_ByteString
+}
+type UA_ActivateSessionRequest struct {
+	RequestHeader                  UA_RequestHeader
+	ClientSignature                UA_SignatureData
+	ClientSoftwareCertificatesSize uint64
+	ClientSoftwareCertificates     *UA_SignedSoftwareCertificate
+	LocaleIdsSize                  uint64
+	LocaleIds                      *UA_ByteString
+	UserIdentityToken              UA_ExtensionObject
+	UserTokenSignature             UA_SignatureData
+}
+type UA_ActivateSessionResponse struct {
+	ResponseHeader      UA_ResponseHeader
+	ServerNonce         UA_ByteString
+	ResultsSize         uint64
+	Results             *uint32
+	DiagnosticInfosSize uint64
+	DiagnosticInfos     *UA_DiagnosticInfo
+}
+type UA_CloseSessionRequest struct {
+	RequestHeader       UA_RequestHeader
+	DeleteSubscriptions bool
+	Pad_cgo_0           [7]byte
+}
+type UA_CloseSessionResponse struct {
+	ResponseHeader UA_ResponseHeader
+}
+type UA_NodeAttributesMask uint32
+
 const (
 	UA_NODEATTRIBUTESMASK_NONE                    = UA_NodeAttributesMask(0)
 	UA_NODEATTRIBUTESMASK_ACCESSLEVEL             = UA_NodeAttributesMask(1)
@@ -409,38 +675,228 @@ const (
 	UA_NODEATTRIBUTESMASK_VIEW                    = UA_NodeAttributesMask(1335532)
 )
 
-type UA_NodeAttributes C.UA_NodeAttributes                     // line: 2553
-type UA_ObjectAttributes C.UA_ObjectAttributes                 // line: 2569
-type UA_VariableAttributes C.UA_VariableAttributes             // line: 2593
-type UA_MethodAttributes C.UA_MethodAttributes                 // line: 2610
-type UA_ObjectTypeAttributes C.UA_ObjectTypeAttributes         // line: 2626
-type UA_VariableTypeAttributes C.UA_VariableTypeAttributes     // line: 2647
-type UA_ReferenceTypeAttributes C.UA_ReferenceTypeAttributes   // line: 2665
-type UA_DataTypeAttributes C.UA_DataTypeAttributes             // line: 2681
-type UA_ViewAttributes C.UA_ViewAttributes                     // line: 2698
-type UA_AddNodesItem C.UA_AddNodesItem                         // line: 2715
-type UA_AddNodesResult C.UA_AddNodesResult                     // line: 2727
-type UA_AddNodesRequest C.UA_AddNodesRequest                   // line: 2740
-type UA_AddNodesResponse C.UA_AddNodesResponse                 // line: 2755
-type UA_AddReferencesItem C.UA_AddReferencesItem               // line: 2771
-type UA_AddReferencesRequest C.UA_AddReferencesRequest         // line: 2784
-type UA_AddReferencesResponse C.UA_AddReferencesResponse       // line: 2799
-type UA_DeleteNodesItem C.UA_DeleteNodesItem                   // line: 2811
-type UA_DeleteNodesRequest C.UA_DeleteNodesRequest             // line: 2824
-type UA_DeleteNodesResponse C.UA_DeleteNodesResponse           // line: 2839
-type UA_DeleteReferencesItem C.UA_DeleteReferencesItem         // line: 2854
-type UA_DeleteReferencesRequest C.UA_DeleteReferencesRequest   // line: 2867
-type UA_DeleteReferencesResponse C.UA_DeleteReferencesResponse // line: 2882
-type UA_BrowseDirection C.UA_BrowseDirection                   // line: 2895
+type UA_NodeAttributes struct {
+	SpecifiedAttributes uint32
+	Pad_cgo_0           [4]byte
+	DisplayName         UA_LocalizedText
+	Description         UA_LocalizedText
+	WriteMask           uint32
+	UserWriteMask       uint32
+}
+type UA_ObjectAttributes struct {
+	SpecifiedAttributes uint32
+	Pad_cgo_0           [4]byte
+	DisplayName         UA_LocalizedText
+	Description         UA_LocalizedText
+	WriteMask           uint32
+	UserWriteMask       uint32
+	EventNotifier       uint8
+	Pad_cgo_1           [7]byte
+}
+type UA_VariableAttributes struct {
+	SpecifiedAttributes     uint32
+	Pad_cgo_0               [4]byte
+	DisplayName             UA_LocalizedText
+	Description             UA_LocalizedText
+	WriteMask               uint32
+	UserWriteMask           uint32
+	Value                   UA_Variant
+	DataType                UA_NodeId
+	ValueRank               int32
+	Pad_cgo_1               [4]byte
+	ArrayDimensionsSize     uint64
+	ArrayDimensions         *uint32
+	AccessLevel             uint8
+	UserAccessLevel         uint8
+	Pad_cgo_2               [6]byte
+	MinimumSamplingInterval float64
+	Historizing             bool
+	Pad_cgo_3               [7]byte
+}
+type UA_MethodAttributes struct {
+	SpecifiedAttributes uint32
+	Pad_cgo_0           [4]byte
+	DisplayName         UA_LocalizedText
+	Description         UA_LocalizedText
+	WriteMask           uint32
+	UserWriteMask       uint32
+	Executable          bool
+	UserExecutable      bool
+	Pad_cgo_1           [6]byte
+}
+type UA_ObjectTypeAttributes struct {
+	SpecifiedAttributes uint32
+	Pad_cgo_0           [4]byte
+	DisplayName         UA_LocalizedText
+	Description         UA_LocalizedText
+	WriteMask           uint32
+	UserWriteMask       uint32
+	IsAbstract          bool
+	Pad_cgo_1           [7]byte
+}
+type UA_VariableTypeAttributes struct {
+	SpecifiedAttributes uint32
+	Pad_cgo_0           [4]byte
+	DisplayName         UA_LocalizedText
+	Description         UA_LocalizedText
+	WriteMask           uint32
+	UserWriteMask       uint32
+	Value               UA_Variant
+	DataType            UA_NodeId
+	ValueRank           int32
+	Pad_cgo_1           [4]byte
+	ArrayDimensionsSize uint64
+	ArrayDimensions     *uint32
+	IsAbstract          bool
+	Pad_cgo_2           [7]byte
+}
+type UA_ReferenceTypeAttributes struct {
+	SpecifiedAttributes uint32
+	Pad_cgo_0           [4]byte
+	DisplayName         UA_LocalizedText
+	Description         UA_LocalizedText
+	WriteMask           uint32
+	UserWriteMask       uint32
+	IsAbstract          bool
+	Symmetric           bool
+	Pad_cgo_1           [6]byte
+	InverseName         UA_LocalizedText
+}
+type UA_DataTypeAttributes struct {
+	SpecifiedAttributes uint32
+	Pad_cgo_0           [4]byte
+	DisplayName         UA_LocalizedText
+	Description         UA_LocalizedText
+	WriteMask           uint32
+	UserWriteMask       uint32
+	IsAbstract          bool
+	Pad_cgo_1           [7]byte
+}
+type UA_ViewAttributes struct {
+	SpecifiedAttributes uint32
+	Pad_cgo_0           [4]byte
+	DisplayName         UA_LocalizedText
+	Description         UA_LocalizedText
+	WriteMask           uint32
+	UserWriteMask       uint32
+	ContainsNoLoops     bool
+	EventNotifier       uint8
+	Pad_cgo_1           [6]byte
+}
+type UA_AddNodesItem struct {
+	ParentNodeId       UA_ExpandedNodeId
+	ReferenceTypeId    UA_NodeId
+	RequestedNewNodeId UA_ExpandedNodeId
+	BrowseName         UA_QualifiedName
+	NodeClass          uint32
+	Pad_cgo_0          [4]byte
+	NodeAttributes     UA_ExtensionObject
+	TypeDefinition     UA_ExpandedNodeId
+}
+type UA_AddNodesResult struct {
+	StatusCode  uint32
+	Pad_cgo_0   [4]byte
+	AddedNodeId UA_NodeId
+}
+type UA_AddNodesRequest struct {
+	RequestHeader  UA_RequestHeader
+	NodesToAddSize uint64
+	NodesToAdd     *UA_AddNodesItem
+}
+type UA_AddNodesResponse struct {
+	ResponseHeader      UA_ResponseHeader
+	ResultsSize         uint64
+	Results             *UA_AddNodesResult
+	DiagnosticInfosSize uint64
+	DiagnosticInfos     *UA_DiagnosticInfo
+}
+type UA_AddReferencesItem struct {
+	SourceNodeId    UA_NodeId
+	ReferenceTypeId UA_NodeId
+	IsForward       bool
+	Pad_cgo_0       [7]byte
+	TargetServerUri UA_ByteString
+	TargetNodeId    UA_ExpandedNodeId
+	TargetNodeClass uint32
+	Pad_cgo_1       [4]byte
+}
+type UA_AddReferencesRequest struct {
+	RequestHeader       UA_RequestHeader
+	ReferencesToAddSize uint64
+	ReferencesToAdd     *UA_AddReferencesItem
+}
+type UA_AddReferencesResponse struct {
+	ResponseHeader      UA_ResponseHeader
+	ResultsSize         uint64
+	Results             *uint32
+	DiagnosticInfosSize uint64
+	DiagnosticInfos     *UA_DiagnosticInfo
+}
+type UA_DeleteNodesItem struct {
+	NodeId                 UA_NodeId
+	DeleteTargetReferences bool
+	Pad_cgo_0              [7]byte
+}
+type UA_DeleteNodesRequest struct {
+	RequestHeader     UA_RequestHeader
+	NodesToDeleteSize uint64
+	NodesToDelete     *UA_DeleteNodesItem
+}
+type UA_DeleteNodesResponse struct {
+	ResponseHeader      UA_ResponseHeader
+	ResultsSize         uint64
+	Results             *uint32
+	DiagnosticInfosSize uint64
+	DiagnosticInfos     *UA_DiagnosticInfo
+}
+type UA_DeleteReferencesItem struct {
+	SourceNodeId        UA_NodeId
+	ReferenceTypeId     UA_NodeId
+	IsForward           bool
+	Pad_cgo_0           [7]byte
+	TargetNodeId        UA_ExpandedNodeId
+	DeleteBidirectional bool
+	Pad_cgo_1           [7]byte
+}
+type UA_DeleteReferencesRequest struct {
+	RequestHeader          UA_RequestHeader
+	ReferencesToDeleteSize uint64
+	ReferencesToDelete     *UA_DeleteReferencesItem
+}
+type UA_DeleteReferencesResponse struct {
+	ResponseHeader      UA_ResponseHeader
+	ResultsSize         uint64
+	Results             *uint32
+	DiagnosticInfosSize uint64
+	DiagnosticInfos     *UA_DiagnosticInfo
+}
+type UA_BrowseDirection uint32
+
 const (
 	UA_BROWSEDIRECTION_FORWARD = UA_BrowseDirection(0)
 	UA_BROWSEDIRECTION_INVERSE = UA_BrowseDirection(1)
 	UA_BROWSEDIRECTION_BOTH    = UA_BrowseDirection(2)
 )
 
-type UA_ViewDescription C.UA_ViewDescription     // line: 2908
-type UA_BrowseDescription C.UA_BrowseDescription // line: 2924
-type UA_BrowseResultMask C.UA_BrowseResultMask   // line: 2944
+type UA_ViewDescription struct {
+	ViewId      UA_NodeId
+	Timestamp   int64
+	ViewVersion uint32
+	Pad_cgo_0   [4]byte
+}
+type UA_BrowseDescription struct {
+	NodeId          UA_NodeId
+	BrowseDirection uint32
+	Pad_cgo_0       [4]byte
+	ReferenceTypeId UA_NodeId
+	IncludeSubtypes bool
+	Pad_cgo_1       [3]byte
+	NodeClassMask   uint32
+	ResultMask      uint32
+	Pad_cgo_2       [4]byte
+}
+type UA_BrowseResultMask uint32
+
 const (
 	UA_BROWSERESULTMASK_NONE              = UA_BrowseResultMask(0)
 	UA_BROWSERESULTMASK_REFERENCETYPEID   = UA_BrowseResultMask(1)
@@ -454,26 +910,124 @@ const (
 	UA_BROWSERESULTMASK_TARGETINFO        = UA_BrowseResultMask(60)
 )
 
-type UA_ReferenceDescription C.UA_ReferenceDescription                                   // line: 2961
-type UA_BrowseResult C.UA_BrowseResult                                                   // line: 2975
-type UA_BrowseRequest C.UA_BrowseRequest                                                 // line: 2990
-type UA_BrowseResponse C.UA_BrowseResponse                                               // line: 3005
-type UA_BrowseNextRequest C.UA_BrowseNextRequest                                         // line: 3019
-type UA_BrowseNextResponse C.UA_BrowseNextResponse                                       // line: 3034
-type UA_RelativePathElement C.UA_RelativePathElement                                     // line: 3048
-type UA_RelativePath C.UA_RelativePath                                                   // line: 3060
-type UA_BrowsePath C.UA_BrowsePath                                                       // line: 3072
-type UA_BrowsePathTarget C.UA_BrowsePathTarget                                           // line: 3084
-type UA_BrowsePathResult C.UA_BrowsePathResult                                           // line: 3097
-type UA_TranslateBrowsePathsToNodeIdsRequest C.UA_TranslateBrowsePathsToNodeIdsRequest   // line: 3110
-type UA_TranslateBrowsePathsToNodeIdsResponse C.UA_TranslateBrowsePathsToNodeIdsResponse // line: 3125
-type UA_RegisterNodesRequest C.UA_RegisterNodesRequest                                   // line: 3138
-type UA_RegisterNodesResponse C.UA_RegisterNodesResponse                                 // line: 3151
-type UA_UnregisterNodesRequest C.UA_UnregisterNodesRequest                               // line: 3164
-type UA_UnregisterNodesResponse C.UA_UnregisterNodesResponse                             // line: 3175
-type UA_QueryDataDescription C.UA_QueryDataDescription                                   // line: 3187
-type UA_NodeTypeDescription C.UA_NodeTypeDescription                                     // line: 3200
-type UA_FilterOperator C.UA_FilterOperator                                               // line: 3227
+type UA_ReferenceDescription struct {
+	ReferenceTypeId UA_NodeId
+	IsForward       bool
+	Pad_cgo_0       [7]byte
+	NodeId          UA_ExpandedNodeId
+	BrowseName      UA_QualifiedName
+	DisplayName     UA_LocalizedText
+	NodeClass       uint32
+	Pad_cgo_1       [4]byte
+	TypeDefinition  UA_ExpandedNodeId
+}
+type UA_BrowseResult struct {
+	StatusCode        uint32
+	Pad_cgo_0         [4]byte
+	ContinuationPoint UA_ByteString
+	ReferencesSize    uint64
+	References        *UA_ReferenceDescription
+}
+type UA_BrowseRequest struct {
+	RequestHeader                 UA_RequestHeader
+	View                          UA_ViewDescription
+	RequestedMaxReferencesPerNode uint32
+	Pad_cgo_0                     [4]byte
+	NodesToBrowseSize             uint64
+	NodesToBrowse                 *UA_BrowseDescription
+}
+type UA_BrowseResponse struct {
+	ResponseHeader      UA_ResponseHeader
+	ResultsSize         uint64
+	Results             *UA_BrowseResult
+	DiagnosticInfosSize uint64
+	DiagnosticInfos     *UA_DiagnosticInfo
+}
+type UA_BrowseNextRequest struct {
+	RequestHeader             UA_RequestHeader
+	ReleaseContinuationPoints bool
+	Pad_cgo_0                 [7]byte
+	ContinuationPointsSize    uint64
+	ContinuationPoints        *UA_ByteString
+}
+type UA_BrowseNextResponse struct {
+	ResponseHeader      UA_ResponseHeader
+	ResultsSize         uint64
+	Results             *UA_BrowseResult
+	DiagnosticInfosSize uint64
+	DiagnosticInfos     *UA_DiagnosticInfo
+}
+type UA_RelativePathElement struct {
+	ReferenceTypeId UA_NodeId
+	IsInverse       bool
+	IncludeSubtypes bool
+	Pad_cgo_0       [6]byte
+	TargetName      UA_QualifiedName
+}
+type UA_RelativePath struct {
+	ElementsSize uint64
+	Elements     *UA_RelativePathElement
+}
+type UA_BrowsePath struct {
+	StartingNode UA_NodeId
+	RelativePath UA_RelativePath
+}
+type UA_BrowsePathTarget struct {
+	TargetId           UA_ExpandedNodeId
+	RemainingPathIndex uint32
+	Pad_cgo_0          [4]byte
+}
+type UA_BrowsePathResult struct {
+	StatusCode  uint32
+	Pad_cgo_0   [4]byte
+	TargetsSize uint64
+	Targets     *UA_BrowsePathTarget
+}
+type UA_TranslateBrowsePathsToNodeIdsRequest struct {
+	RequestHeader   UA_RequestHeader
+	BrowsePathsSize uint64
+	BrowsePaths     *UA_BrowsePath
+}
+type UA_TranslateBrowsePathsToNodeIdsResponse struct {
+	ResponseHeader      UA_ResponseHeader
+	ResultsSize         uint64
+	Results             *UA_BrowsePathResult
+	DiagnosticInfosSize uint64
+	DiagnosticInfos     *UA_DiagnosticInfo
+}
+type UA_RegisterNodesRequest struct {
+	RequestHeader       UA_RequestHeader
+	NodesToRegisterSize uint64
+	NodesToRegister     *UA_NodeId
+}
+type UA_RegisterNodesResponse struct {
+	ResponseHeader        UA_ResponseHeader
+	RegisteredNodeIdsSize uint64
+	RegisteredNodeIds     *UA_NodeId
+}
+type UA_UnregisterNodesRequest struct {
+	RequestHeader         UA_RequestHeader
+	NodesToUnregisterSize uint64
+	NodesToUnregister     *UA_NodeId
+}
+type UA_UnregisterNodesResponse struct {
+	ResponseHeader UA_ResponseHeader
+}
+type UA_QueryDataDescription struct {
+	RelativePath UA_RelativePath
+	AttributeId  uint32
+	Pad_cgo_0    [4]byte
+	IndexRange   UA_ByteString
+}
+type UA_NodeTypeDescription struct {
+	TypeDefinitionNode UA_ExpandedNodeId
+	IncludeSubTypes    bool
+	Pad_cgo_0          [7]byte
+	DataToReturnSize   uint64
+	DataToReturn       *UA_QueryDataDescription
+}
+type UA_FilterOperator uint32
+
 const (
 	UA_FILTEROPERATOR_EQUALS             = UA_FilterOperator(0)
 	UA_FILTEROPERATOR_ISNULL             = UA_FilterOperator(1)
@@ -495,17 +1049,78 @@ const (
 	UA_FILTEROPERATOR_BITWISEOR          = UA_FilterOperator(17)
 )
 
-type UA_QueryDataSet C.UA_QueryDataSet                             // line: 3240
-type UA_ContentFilterElement C.UA_ContentFilterElement             // line: 3252
-type UA_ContentFilter C.UA_ContentFilter                           // line: 3263
-type UA_ContentFilterElementResult C.UA_ContentFilterElementResult // line: 3277
-type UA_ContentFilterResult C.UA_ContentFilterResult               // line: 3290
-type UA_ParsingResult C.UA_ParsingResult                           // line: 3304
-type UA_QueryFirstRequest C.UA_QueryFirstRequest                   // line: 3320
-type UA_QueryFirstResponse C.UA_QueryFirstResponse                 // line: 3338
-type UA_QueryNextRequest C.UA_QueryNextRequest                     // line: 3350
-type UA_QueryNextResponse C.UA_QueryNextResponse                   // line: 3363
-type UA_TimestampsToReturn C.UA_TimestampsToReturn                 // line: 3376
+type UA_QueryDataSet struct {
+	NodeId             UA_ExpandedNodeId
+	TypeDefinitionNode UA_ExpandedNodeId
+	ValuesSize         uint64
+	Values             *UA_Variant
+}
+type UA_ContentFilterElement struct {
+	FilterOperator     uint32
+	Pad_cgo_0          [4]byte
+	FilterOperandsSize uint64
+	FilterOperands     *UA_ExtensionObject
+}
+type UA_ContentFilter struct {
+	ElementsSize uint64
+	Elements     *UA_ContentFilterElement
+}
+type UA_ContentFilterElementResult struct {
+	StatusCode                 uint32
+	Pad_cgo_0                  [4]byte
+	OperandStatusCodesSize     uint64
+	OperandStatusCodes         *uint32
+	OperandDiagnosticInfosSize uint64
+	OperandDiagnosticInfos     *UA_DiagnosticInfo
+}
+type UA_ContentFilterResult struct {
+	ElementResultsSize         uint64
+	ElementResults             *UA_ContentFilterElementResult
+	ElementDiagnosticInfosSize uint64
+	ElementDiagnosticInfos     *UA_DiagnosticInfo
+}
+type UA_ParsingResult struct {
+	StatusCode              uint32
+	Pad_cgo_0               [4]byte
+	DataStatusCodesSize     uint64
+	DataStatusCodes         *uint32
+	DataDiagnosticInfosSize uint64
+	DataDiagnosticInfos     *UA_DiagnosticInfo
+}
+type UA_QueryFirstRequest struct {
+	RequestHeader         UA_RequestHeader
+	View                  UA_ViewDescription
+	NodeTypesSize         uint64
+	NodeTypes             *UA_NodeTypeDescription
+	Filter                UA_ContentFilter
+	MaxDataSetsToReturn   uint32
+	MaxReferencesToReturn uint32
+}
+type UA_QueryFirstResponse struct {
+	ResponseHeader      UA_ResponseHeader
+	QueryDataSetsSize   uint64
+	QueryDataSets       *UA_QueryDataSet
+	ContinuationPoint   UA_ByteString
+	ParsingResultsSize  uint64
+	ParsingResults      *UA_ParsingResult
+	DiagnosticInfosSize uint64
+	DiagnosticInfos     *UA_DiagnosticInfo
+	FilterResult        UA_ContentFilterResult
+}
+type UA_QueryNextRequest struct {
+	RequestHeader            UA_RequestHeader
+	ReleaseContinuationPoint bool
+	Pad_cgo_0                [7]byte
+	ContinuationPoint        UA_ByteString
+}
+type UA_QueryNextResponse struct {
+	ResponseHeader           UA_ResponseHeader
+	QueryDataSetsSize        uint64
+	QueryDataSets            *UA_QueryDataSet
+	RevisedContinuationPoint UA_ByteString
+}
+type UA_TimestampsToReturn uint32
+
 const (
 	UA_TIMESTAMPSTORETURN_SOURCE  = UA_TimestampsToReturn(0)
 	UA_TIMESTAMPSTORETURN_SERVER  = UA_TimestampsToReturn(1)
@@ -513,40 +1128,204 @@ const (
 	UA_TIMESTAMPSTORETURN_NEITHER = UA_TimestampsToReturn(3)
 )
 
-type UA_ReadValueId C.UA_ReadValueId             // line: 3389
-type UA_ReadRequest C.UA_ReadRequest             // line: 3403
-type UA_ReadResponse C.UA_ReadResponse           // line: 3417
-type UA_WriteValue C.UA_WriteValue               // line: 3430
-type UA_WriteRequest C.UA_WriteRequest           // line: 3442
-type UA_WriteResponse C.UA_WriteResponse         // line: 3456
-type UA_CallMethodRequest C.UA_CallMethodRequest // line: 3469
-type UA_CallMethodResult C.UA_CallMethodResult   // line: 3485
-type UA_CallRequest C.UA_CallRequest             // line: 3497
-type UA_CallResponse C.UA_CallResponse           // line: 3511
-type UA_MonitoringMode C.UA_MonitoringMode       // line: 3523
+type UA_ReadValueId struct {
+	NodeId       UA_NodeId
+	AttributeId  uint32
+	Pad_cgo_0    [4]byte
+	IndexRange   UA_ByteString
+	DataEncoding UA_QualifiedName
+}
+type UA_ReadRequest struct {
+	RequestHeader      UA_RequestHeader
+	MaxAge             float64
+	TimestampsToReturn uint32
+	Pad_cgo_0          [4]byte
+	NodesToReadSize    uint64
+	NodesToRead        *UA_ReadValueId
+}
+type UA_ReadResponse struct {
+	ResponseHeader      UA_ResponseHeader
+	ResultsSize         uint64
+	Results             *UA_DataValue
+	DiagnosticInfosSize uint64
+	DiagnosticInfos     *UA_DiagnosticInfo
+}
+type UA_WriteValue struct {
+	NodeId      UA_NodeId
+	AttributeId uint32
+	Pad_cgo_0   [4]byte
+	IndexRange  UA_ByteString
+	Value       UA_DataValue
+}
+type UA_WriteRequest struct {
+	RequestHeader    UA_RequestHeader
+	NodesToWriteSize uint64
+	NodesToWrite     *UA_WriteValue
+}
+type UA_WriteResponse struct {
+	ResponseHeader      UA_ResponseHeader
+	ResultsSize         uint64
+	Results             *uint32
+	DiagnosticInfosSize uint64
+	DiagnosticInfos     *UA_DiagnosticInfo
+}
+type UA_CallMethodRequest struct {
+	ObjectId           UA_NodeId
+	MethodId           UA_NodeId
+	InputArgumentsSize uint64
+	InputArguments     *UA_Variant
+}
+type UA_CallMethodResult struct {
+	StatusCode                       uint32
+	Pad_cgo_0                        [4]byte
+	InputArgumentResultsSize         uint64
+	InputArgumentResults             *uint32
+	InputArgumentDiagnosticInfosSize uint64
+	InputArgumentDiagnosticInfos     *UA_DiagnosticInfo
+	OutputArgumentsSize              uint64
+	OutputArguments                  *UA_Variant
+}
+type UA_CallRequest struct {
+	RequestHeader     UA_RequestHeader
+	MethodsToCallSize uint64
+	MethodsToCall     *UA_CallMethodRequest
+}
+type UA_CallResponse struct {
+	ResponseHeader      UA_ResponseHeader
+	ResultsSize         uint64
+	Results             *UA_CallMethodResult
+	DiagnosticInfosSize uint64
+	DiagnosticInfos     *UA_DiagnosticInfo
+}
+type UA_MonitoringMode uint32
+
 const (
 	UA_MONITORINGMODE_DISABLED  = UA_MonitoringMode(0)
 	UA_MONITORINGMODE_SAMPLING  = UA_MonitoringMode(1)
 	UA_MONITORINGMODE_REPORTING = UA_MonitoringMode(2)
 )
 
-type UA_MonitoringParameters C.UA_MonitoringParameters                 // line: 3537
-type UA_MonitoredItemCreateRequest C.UA_MonitoredItemCreateRequest     // line: 3549
-type UA_MonitoredItemCreateResult C.UA_MonitoredItemCreateResult       // line: 3563
-type UA_CreateMonitoredItemsRequest C.UA_CreateMonitoredItemsRequest   // line: 3577
-type UA_CreateMonitoredItemsResponse C.UA_CreateMonitoredItemsResponse // line: 3591
-type UA_CreateSubscriptionRequest C.UA_CreateSubscriptionRequest       // line: 3607
-type UA_CreateSubscriptionResponse C.UA_CreateSubscriptionResponse     // line: 3621
-type UA_SetPublishingModeRequest C.UA_SetPublishingModeRequest         // line: 3634
-type UA_SetPublishingModeResponse C.UA_SetPublishingModeResponse       // line: 3648
-type UA_NotificationMessage C.UA_NotificationMessage                   // line: 3661
-type UA_SubscriptionAcknowledgement C.UA_SubscriptionAcknowledgement   // line: 3672
-type UA_PublishRequest C.UA_PublishRequest                             // line: 3684
-type UA_PublishResponse C.UA_PublishResponse                           // line: 3703
-type UA_DeleteSubscriptionsRequest C.UA_DeleteSubscriptionsRequest     // line: 3715
-type UA_DeleteSubscriptionsResponse C.UA_DeleteSubscriptionsResponse   // line: 3729
-type UA_BuildInfo C.UA_BuildInfo                                       // line: 3744
-type UA_ServerState C.UA_ServerState                                   // line: 3761
+type UA_MonitoringParameters struct {
+	ClientHandle     uint32
+	Pad_cgo_0        [4]byte
+	SamplingInterval float64
+	Filter           UA_ExtensionObject
+	QueueSize        uint32
+	DiscardOldest    bool
+	Pad_cgo_1        [3]byte
+}
+type UA_MonitoredItemCreateRequest struct {
+	ItemToMonitor       UA_ReadValueId
+	MonitoringMode      uint32
+	Pad_cgo_0           [4]byte
+	RequestedParameters UA_MonitoringParameters
+}
+type UA_MonitoredItemCreateResult struct {
+	StatusCode              uint32
+	MonitoredItemId         uint32
+	RevisedSamplingInterval float64
+	RevisedQueueSize        uint32
+	Pad_cgo_0               [4]byte
+	FilterResult            UA_ExtensionObject
+}
+type UA_CreateMonitoredItemsRequest struct {
+	RequestHeader      UA_RequestHeader
+	SubscriptionId     uint32
+	TimestampsToReturn uint32
+	ItemsToCreateSize  uint64
+	ItemsToCreate      *UA_MonitoredItemCreateRequest
+}
+type UA_CreateMonitoredItemsResponse struct {
+	ResponseHeader      UA_ResponseHeader
+	ResultsSize         uint64
+	Results             *UA_MonitoredItemCreateResult
+	DiagnosticInfosSize uint64
+	DiagnosticInfos     *UA_DiagnosticInfo
+}
+type UA_CreateSubscriptionRequest struct {
+	RequestHeader               UA_RequestHeader
+	RequestedPublishingInterval float64
+	RequestedLifetimeCount      uint32
+	RequestedMaxKeepAliveCount  uint32
+	MaxNotificationsPerPublish  uint32
+	PublishingEnabled           bool
+	Priority                    uint8
+	Pad_cgo_0                   [2]byte
+}
+type UA_CreateSubscriptionResponse struct {
+	ResponseHeader            UA_ResponseHeader
+	SubscriptionId            uint32
+	Pad_cgo_0                 [4]byte
+	RevisedPublishingInterval float64
+	RevisedLifetimeCount      uint32
+	RevisedMaxKeepAliveCount  uint32
+}
+type UA_SetPublishingModeRequest struct {
+	RequestHeader       UA_RequestHeader
+	PublishingEnabled   bool
+	Pad_cgo_0           [7]byte
+	SubscriptionIdsSize uint64
+	SubscriptionIds     *uint32
+}
+type UA_SetPublishingModeResponse struct {
+	ResponseHeader      UA_ResponseHeader
+	ResultsSize         uint64
+	Results             *uint32
+	DiagnosticInfosSize uint64
+	DiagnosticInfos     *UA_DiagnosticInfo
+}
+type UA_NotificationMessage struct {
+	SequenceNumber       uint32
+	Pad_cgo_0            [4]byte
+	PublishTime          int64
+	NotificationDataSize uint64
+	NotificationData     *UA_ExtensionObject
+}
+type UA_SubscriptionAcknowledgement struct {
+	SubscriptionId uint32
+	SequenceNumber uint32
+}
+type UA_PublishRequest struct {
+	RequestHeader                    UA_RequestHeader
+	SubscriptionAcknowledgementsSize uint64
+	SubscriptionAcknowledgements     *UA_SubscriptionAcknowledgement
+}
+type UA_PublishResponse struct {
+	ResponseHeader               UA_ResponseHeader
+	SubscriptionId               uint32
+	Pad_cgo_0                    [4]byte
+	AvailableSequenceNumbersSize uint64
+	AvailableSequenceNumbers     *uint32
+	MoreNotifications            bool
+	Pad_cgo_1                    [7]byte
+	NotificationMessage          UA_NotificationMessage
+	ResultsSize                  uint64
+	Results                      *uint32
+	DiagnosticInfosSize          uint64
+	DiagnosticInfos              *UA_DiagnosticInfo
+}
+type UA_DeleteSubscriptionsRequest struct {
+	RequestHeader       UA_RequestHeader
+	SubscriptionIdsSize uint64
+	SubscriptionIds     *uint32
+}
+type UA_DeleteSubscriptionsResponse struct {
+	ResponseHeader      UA_ResponseHeader
+	ResultsSize         uint64
+	Results             *uint32
+	DiagnosticInfosSize uint64
+	DiagnosticInfos     *UA_DiagnosticInfo
+}
+type UA_BuildInfo struct {
+	ProductUri       UA_ByteString
+	ManufacturerName UA_ByteString
+	ProductName      UA_ByteString
+	SoftwareVersion  UA_ByteString
+	BuildNumber      UA_ByteString
+	BuildDate        int64
+}
+type UA_ServerState uint32
+
 const (
 	UA_SERVERSTATE_RUNNING            = UA_ServerState(0)
 	UA_SERVERSTATE_FAILED             = UA_ServerState(1)
@@ -558,20 +1337,57 @@ const (
 	UA_SERVERSTATE_UNKNOWN            = UA_ServerState(7)
 )
 
-type UA_ServerStatusDataType C.UA_ServerStatusDataType // line: 3776
-type UA_Connection C.UA_Connection                     // line: 3814
-type UA_Server C.UA_Server                             // line: 3817
-type UA_Job C.UA_Job                                   // line: 3842
-type UA_ConnectionState C.UA_ConnectionState           // line: 3876
+type UA_ServerStatusDataType struct {
+	StartTime           int64
+	CurrentTime         int64
+	State               uint32
+	Pad_cgo_0           [4]byte
+	BuildInfo           UA_BuildInfo
+	SecondsTillShutdown uint32
+	Pad_cgo_1           [4]byte
+	ShutdownReason      UA_LocalizedText
+}
+type UA_Connection struct {
+	State             uint32
+	LocalConf         UA_ConnectionConfig
+	RemoteConf        UA_ConnectionConfig
+	Pad_cgo_0         [4]byte
+	Channel           *UA_SecureChannel
+	Sockfd            int32
+	Pad_cgo_1         [4]byte
+	Handle            *byte
+	IncompleteMessage UA_ByteString
+	GetSendBuffer     *[0]byte
+	ReleaseSendBuffer *[0]byte
+	Send              *[0]byte
+	Recv              *[0]byte
+	ReleaseRecvBuffer *[0]byte
+	Close             *[0]byte
+}
+type UA_Server struct{}
+type UA_Job struct {
+	Type      uint32
+	Pad_cgo_0 [4]byte
+	Job       [24]byte
+}
+type UA_ConnectionState uint32
+
 const (
-	UA_CONNECTION_OPENING     = iota ///< The socket is open, but the HEL/ACK handshake is not done
-	UA_CONNECTION_ESTABLISHED        ///< The socket is open and the connection configured
-	UA_CONNECTION_CLOSED             ///< The socket has been closed and the connection will be deleted
+	UA_CONNECTION_OPENING = iota
+	UA_CONNECTION_ESTABLISHED
+	UA_CONNECTION_CLOSED
 )
 
-type UA_ConnectionConfig C.UA_ConnectionConfig // line: 3884
-type UA_SecureChannel C.UA_SecureChannel       // line: 3890
-type UA_LogLevel C.UA_LogLevel                 // line: 4011
+type UA_ConnectionConfig struct {
+	ProtocolVersion uint32
+	SendBufferSize  uint32
+	RecvBufferSize  uint32
+	MaxMessageSize  uint32
+	MaxChunkCount   uint32
+}
+type UA_SecureChannel struct{}
+type UA_LogLevel uint32
+
 const (
 	UA_LOGLEVEL_TRACE = iota
 	UA_LOGLEVEL_DEBUG
@@ -581,7 +1397,8 @@ const (
 	UA_LOGLEVEL_FATAL
 )
 
-type UA_LogCategory C.UA_LogCategory // line: 4020
+type UA_LogCategory uint32
+
 const (
 	UA_LOGCATEGORY_NETWORK = iota
 	UA_LOGCATEGORY_SECURECHANNEL
@@ -591,14 +1408,74 @@ const (
 	UA_LOGCATEGORY_USERLAND
 )
 
-type UA_ServerNetworkLayer C.UA_ServerNetworkLayer               // line: 4101
-type UA_UsernamePasswordLogin C.UA_UsernamePasswordLogin         // line: 4106
-type UA_ServerConfig C.UA_ServerConfig                           // line: 4123
-type UA_DataSource C.UA_DataSource                               // line: 4264
-type UA_ValueCallback C.UA_ValueCallback                         // line: 4278
-type UA_ObjectLifecycleManagement C.UA_ObjectLifecycleManagement // line: 4289
-type UA_InstantiationCallback C.UA_InstantiationCallback         // line: 4311
-type UA_ExternalNodeStore C.UA_ExternalNodeStore                 // line: 4687
-type UA_Client C.UA_Client                                       // line: 4707
-type UA_ClientConfig C.UA_ClientConfig                           // line: 4713
-type UA_SubscriptionSettings C.UA_SubscriptionSettings           // line: 5365
+type UA_ServerNetworkLayer struct {
+	Handle        *byte
+	DiscoveryUrl  UA_ByteString
+	Start         *[0]byte
+	GetJobs       *[0]byte
+	Stop          *[0]byte
+	DeleteMembers *[0]byte
+}
+type UA_UsernamePasswordLogin struct {
+	Username UA_ByteString
+	Password UA_ByteString
+}
+type UA_ServerConfig struct {
+	NThreads                    uint16
+	Pad_cgo_0                   [6]byte
+	Logger                      *[0]byte
+	BuildInfo                   UA_BuildInfo
+	ApplicationDescription      UA_ApplicationDescription
+	ServerCertificate           UA_ByteString
+	NetworkLayersSize           uint64
+	NetworkLayers               *UA_ServerNetworkLayer
+	EnableAnonymousLogin        bool
+	EnableUsernamePasswordLogin bool
+	Pad_cgo_1                   [6]byte
+	UsernamePasswordLoginsSize  uint64
+}
+type UA_DataSource struct {
+	Handle *byte
+	Read   *[0]byte
+	Write  *[0]byte
+}
+type UA_ValueCallback struct {
+	Handle  *byte
+	OnRead  *[0]byte
+	OnWrite *[0]byte
+}
+type UA_ObjectLifecycleManagement struct {
+	Constructor *[0]byte
+	Destructor  *[0]byte
+}
+type UA_InstantiationCallback struct {
+	Method *[0]byte
+	Handle *byte
+}
+type UA_ExternalNodeStore struct {
+	EnsHandle                     *byte
+	AddNodes                      *[0]byte
+	DeleteNodes                   *[0]byte
+	WriteNodes                    *[0]byte
+	ReadNodes                     *[0]byte
+	BrowseNodes                   *[0]byte
+	TranslateBrowsePathsToNodeIds *[0]byte
+	AddReferences                 *[0]byte
+	DeleteReferences              *[0]byte
+	Destroy                       *[0]byte
+}
+type UA_Client struct{}
+type UA_ClientConfig struct {
+	Timeout               uint32
+	SecureChannelLifeTime uint32
+	LocalConnectionConfig UA_ConnectionConfig
+}
+type UA_SubscriptionSettings struct {
+	RequestedPublishingInterval float64
+	RequestedLifetimeCount      uint32
+	RequestedMaxKeepAliveCount  uint32
+	MaxNotificationsPerPublish  uint32
+	PublishingEnabled           bool
+	Priority                    uint8
+	Pad_cgo_0                   [2]byte
+}

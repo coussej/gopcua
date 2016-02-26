@@ -8,8 +8,8 @@
   * Creates a new UA_client
   *  @return *UA_Client
 */
-UA_Client *gopcua_client_new() {
-  return UA_Client_new(UA_ClientConfig_standard, Logger_Stdout);
+UA_Client *gopcua_client_new(UA_ClientConfig config) {
+  return UA_Client_new(config, Logger_Stdout);
 }
 
 /**

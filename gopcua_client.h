@@ -1,7 +1,7 @@
 #ifndef GOPCUA_CLIENT_H
 #define GOPCUA_CLIENT_H
 
-#include <open62541.h>
+#include "open62541.h"
 
 typedef struct gopcua_point_int32 {
   UA_Int32            value;
@@ -23,7 +23,7 @@ typedef struct gopcua_point_float32 {
   UA_Boolean          has_server_ts;
 } gopcua_point_float32;
 
-extern UA_Client *gopcua_client_new();
+extern UA_Client *gopcua_client_new(UA_ClientConfig config);
 
 extern int gopcua_client_connect(UA_Client *client, char connInfo[]);
 
